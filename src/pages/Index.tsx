@@ -43,6 +43,7 @@ const getSourceBadgeClass = (source: SourceType): string => {
     case "WEF":
     case "Gartner":
     case "DI":
+    case "IIA":
       return "bg-warning/15 text-warning";
     // Security & risk frameworks → danger red
     case "OWASP":

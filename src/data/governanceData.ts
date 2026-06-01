@@ -23,7 +23,8 @@ export type SourceType =
   | "CSA"
   | "AI Verify"
   | "FinOps"
-  | "MCP";
+  | "MCP"
+  | "IIA";
 
 export interface Subcategory {
   id: string;
@@ -70,7 +71,8 @@ const OECD_PRINCIPLES = "https://oecd.ai/en/ai-principles";
 const COE_FCAI = "https://www.coe.int/en/web/artificial-intelligence";
 const MS_RAI = "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Microsoft-Responsible-AI-Standard-General-Requirements.pdf";
 const GOOGLE_SAIF = "https://saif.google/secure-ai-framework/controls";
-const ANTHROPIC_RSP = "https://anthropic.com/responsible-scaling-policy/rsp-v3-0";
+const ANTHROPIC_RSP = "https://www.anthropic.com/responsible-scaling-policy";
+const ANTHROPIC_AGENT_FRAMEWORK = "https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents";
 const OWASP_LLM = "https://genai.owasp.org/llm-top-10/";
 const OWASP_AGENTIC = "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/";
 const OWASP_ASI = "https://genai.owasp.org/initiatives/agentic-security-initiative/";
@@ -85,7 +87,11 @@ const DATATILSYNET_AI = "https://www.datatilsynet.dk/regler-og-vejledning/kunsti
 const FINANSTILSYNET_AI = "https://www.finanstilsynet.dk/Media/638628434082426731/Rapport%20om%20brugen%20af%20kunstig%20intelligens%20i%20den%20finansielle%20sektor.pdf";
 const DI_GUIDE = "https://www.danskindustri.dk/vi-radgiver-dig/virksomhedsregler-og-varktojer/ai/styrk-din-forretning-med-ai/en-strategisk-guide-til-at-implementere-ai-i-din-virksomhed/";
 const FINOPS_AI = "https://www.finops.org/wg/finops-for-ai-overview/";
-const MCP_AUTH = "https://blog.modelcontextprotocol.io/";
+const MCP_AUTH = "https://modelcontextprotocol.io/specification/2026-03-15/basic/authorization";
+const IIA_AI_FRAMEWORK = "https://www.theiia.org/globalassets/site/content/tools/professional/aiframework-sept-2024-update.pdf";
+const ISO_42005 = "https://www.iso.org/standard/42005";
+const DS_42001 = "https://www.ds.dk/en/about-standards/management-systems/iso-iec-42001-information-technology-artificial-intelligence";
+const FINANSTILSYNET_GODPRAKSIS = "https://www.finanstilsynet.dk/finansielle-temaer/fintech/vejledning-og-haandholdt-tilsyn/god-praksis-ved-brug-af-kunstig-intelligens";
 const GDPR_ART_17 = "https://gdpr-info.eu/art-17-gdpr/";
 
 // ── Pillars ───────────────────────────────────────────────────────────────
@@ -255,10 +261,11 @@ export const categories: Category[] = [
           "Indfør \"challenger model\"-review for kritiske beslutningsmodeller",
         ],
         sourceLinks: [
-          { label: "Finanstilsynet — AI i den finansielle sektor", url: FINANSTILSYNET_AI, source: "Finanstilsynet" },
+          { label: "IIA AI Auditing Framework (sept 2024)", url: IIA_AI_FRAMEWORK, source: "IIA" },
+          { label: "Finanstilsynet — god praksis for AI", url: FINANSTILSYNET_GODPRAKSIS, source: "Finanstilsynet" },
           { label: "ISO/IEC 42001 A.3", url: ISO_42001, source: "ISO" },
         ],
-        tags: ["3LoD", "finans", "intern revision"],
+        tags: ["3LoD", "finans", "intern revision", "IIA"],
       },
       {
         id: "eskalering-whistleblower",
@@ -432,7 +439,7 @@ export const categories: Category[] = [
         ],
         sourceLinks: [
           { label: "OWASP Agentic ASI01 (Planning)", url: OWASP_AGENTIC, source: "OWASP" },
-          { label: "Anthropic Responsible Scaling Policy v3", url: ANTHROPIC_RSP, source: "Anthropic" },
+          { label: "Anthropic Responsible Scaling Policy v3.1", url: ANTHROPIC_RSP, source: "Anthropic" },
         ],
         tags: ["autonomi", "beslutning", "agent", "irreversibel"],
       },
@@ -911,7 +918,7 @@ export const categories: Category[] = [
     sourceLinks: [
       { label: "OWASP Top 10 for Agentic Applications 2026", url: OWASP_AGENTIC, source: "OWASP" },
       { label: "OWASP Agentic Security Initiative", url: OWASP_ASI, source: "OWASP" },
-      { label: "Anthropic Responsible Scaling Policy v3", url: ANTHROPIC_RSP, source: "Anthropic" },
+      { label: "Anthropic Responsible Scaling Policy v3.1", url: ANTHROPIC_RSP, source: "Anthropic" },
     ],
   },
 
@@ -957,7 +964,7 @@ export const categories: Category[] = [
         sourceLinks: [
           { label: "MITRE ATLAS", url: MITRE_ATLAS, source: "MITRE" },
           { label: "NIST GenAI MS-1.1", url: NIST_GENAI, source: "NIST" },
-          { label: "Anthropic RSP v3", url: ANTHROPIC_RSP, source: "Anthropic" },
+          { label: "Anthropic RSP v3.1", url: ANTHROPIC_RSP, source: "Anthropic" },
         ],
         tags: ["red team", "adversarial", "ATLAS"],
       },
@@ -1233,7 +1240,7 @@ export const categories: Category[] = [
         sourceLinks: [
           { label: "NIST MEASURE 1", url: NIST_AIRMF, source: "NIST" },
           { label: "Microsoft RAI Standard", url: MS_RAI, source: "Microsoft" },
-          { label: "Anthropic RSP v3", url: ANTHROPIC_RSP, source: "Anthropic" },
+          { label: "Anthropic RSP v3.1", url: ANTHROPIC_RSP, source: "Anthropic" },
         ],
         tags: ["versionering", "rollback", "model pinning"],
       },
@@ -1322,6 +1329,7 @@ export const categories: Category[] = [
         ],
         sourceLinks: [
           { label: "EU AI Act art. 14", url: EU_AI_ACT, source: "EU AI Act" },
+          { label: "Anthropic: Framework for safe and trustworthy agents (aug 2025)", url: ANTHROPIC_AGENT_FRAMEWORK, source: "Anthropic" },
           { label: "OWASP ASI09 (Human-Agent Trust)", url: OWASP_AGENTIC, source: "OWASP" },
           { label: "Microsoft RAI Standard", url: MS_RAI, source: "Microsoft" },
         ],
@@ -1438,13 +1446,13 @@ export const categories: Category[] = [
         id: "energi-co2",
         name: "Energi- og CO2-rapportering for AI",
         description:
-          "Voksende rapporteringskrav (CSRD, intern ESG) inkluderer AI-relateret energiforbrug. Tidlig disciplin betaler sig.",
-        severity: "low",
+          "CSRD/ESRS E1 har endnu ikke AI-specifikke krav, men dækker Scope 1-3 hvor AI-energiforbrug indgår. Forventning om eksplicitte AI-krav i kommende ESRS-revisioner (gældende FY 2027). Voksende bestyrelsesopmærksomhed.",
+        severity: "medium",
         actions: [
           "Vendor-attestation om regions energi-mix",
           "Vurder inferenceeffektivitet ved modelvalg (mindre model = mindre CO2)",
-          "Inkluder AI-fodaftryk i CSRD-rapportering",
-          "Etabler interne reduktionsmål",
+          "Inkluder AI-fodaftryk i CSRD-rapportering under Scope 3",
+          "Etabler interne reduktionsmål — foran kommende ESRS-revisioner",
         ],
         sourceLinks: [
           { label: "OECD Principles 1.4", url: OECD_PRINCIPLES, source: "OECD" },
@@ -1525,7 +1533,7 @@ export const categories: Category[] = [
         id: "ekstern-certificering",
         name: "Eksterne assurances og certificeringer",
         description:
-          "ISO 42001-certificering, SOC 2 for AI, AI Verify-attestering bliver markedsforventning i 2026.",
+          "ISO/IEC 42001-certificering kombineret med SOC 2 / ISO 27001 (med AI-scope) bliver markedsforventning i 2026. Singapore AI Verify-attestering vinder international troværdighed.",
         severity: "medium",
         actions: [
           "Roadmap til ISO 42001-certificering med konkret target-dato",

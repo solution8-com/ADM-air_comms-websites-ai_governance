@@ -1,23 +1,29 @@
 # ai-governance.dk — project status
 
-**Last updated:** 2026-06-01
+**Last updated:** 2026-06-01 (post-deploy)
 
 ## At a glance
 
 | | |
 |---|---|
-| **Live URL** | (not deployed yet — localhost only) |
-| **Netlify site** | (not connected yet) |
-| **GitHub repo** | (not pushed yet — `solution8-com/ai-governance` planned) |
+| **Live URL** | https://ai-governance.dk (DNS propagated; Let's Encrypt cert provisioning in flight at last check — site reachable on HTTP, HTTPS auto-completes within ~30 min of DNS resolve) |
+| **Netlify site** | ai-governance.netlify.app |
+| **GitHub repo** | https://github.com/solution8-com/ai-governance |
 | **Brand color** | Royal blue HSL(220°, 70%, 55%) ≈ #3C78E6 |
 | **Topic** | "How do I run AI responsibly inside an organization?" (governance, broader than compliance) |
-| **Status** | 🟡 First draft built — awaiting Jacob's review cycles |
+| **Status** | 🟢 Live — initial deploy 2026-06-01, content review cycles deferred to post-launch |
 
 ## Where we are
 
 Build phase: ✅ Done (data file, Index.tsx, branding, favicon, og-image, SEO, build verified)
-Review phase: 🟡 In progress — Jacob explicitly requested multiple review cycles before deploy
-Deploy phase: ⏸ Waiting on review sign-off
+Review phase: ⏸ Deferred — Jacob signed off on outline; concrete content review will happen post-launch with the live site as the artifact
+Deploy phase: ✅ Done — GitHub push, transferred to solution8-com, Netlify connected, GoDaddy DNS migrated, HTTPS provisioning auto
+
+## Deploy facts
+
+- **DNS migration:** GoDaddy A `@ → 75.2.60.5` + CNAME `www → ai-governance.netlify.app`. Migrated 2026-06-01.
+- **Initial cert:** Let's Encrypt issued by Netlify after DNS resolved. Wildcard `*.netlify.app` cert visible briefly during provisioning.
+- **Auto-deploy:** every `git push` to `main` triggers a Netlify rebuild — no manual deploy needed.
 
 ## Content scope
 
@@ -62,18 +68,14 @@ npm run dev -- --port 8082
 npm run build
 ```
 
-## Open items before deploy
+## Post-launch items
 
-- [ ] Jacob reviews content for accuracy/depth (multiple cycles expected)
-- [ ] Iterate based on feedback
-- [ ] `git init -b main`, initial commit
-- [ ] `gh repo create ai-governance --public --source=. --push` on personal account
-- [ ] Transfer repo to `solution8-com` org via `gh api repos/.../transfer`
-- [ ] Connect Netlify, rename subdomain to `ai-governance.netlify.app`
-- [ ] Add custom domain `ai-governance.dk` in Netlify
-- [ ] GoDaddy DNS: A `@ → 75.2.60.5`, CNAME `www → ai-governance.netlify.app`
-- [ ] Verify HTTPS auto-provisions
-- [ ] Test LinkedIn og-image preview
+- [ ] Verify HTTPS Let's Encrypt cert fully provisioned (should be done ~15 min after DNS resolve)
+- [ ] LinkedIn og-image preview test (use Post Inspector with cache-bust `?v=2`)
+- [ ] Content depth review: spot-check categories 3.4 (agent runtime, 6 subcats — the differentiator), 1.4 (agent organizational), 2.4 (agent build-time). Iterate as needed via `git push`.
+- [ ] Translation fix shipped pre-deploy: "AI-inventar" → "AI-register", "Agent- og skill-katalog" → "Agent- og skill-register". Watch for other Danish/English direct-translation awkwardness on review.
+- [ ] Eventually: create governance-specific MailerLite form (currently shares form with compliance + sikkerhed). Swap `MAILERLITE_ACTION` in `src/pages/Index.tsx`.
+- [ ] Items flagged `[verify]` during research — see list below; check before content goes wide.
 
 ## Items flagged `[verify]` during research
 
