@@ -487,6 +487,133 @@ function DashboardView({ onNavigate }: { onNavigate: (v: View, p?: PillarId) => 
   );
 }
 
+// ── Værktøj: Agent decision-class matrix (for subkategori 1.4.4) ──
+function AgentDecisionClassMatrix() {
+  // Cells: [oversight mode][decision class] = policy text
+  const cols = [
+    { id: "auton", label: "Autonom", note: "Agent handler selv" },
+    { id: "hitl", label: "Human-in-loop", note: "Menneskelig review pr. handling" },
+    { id: "twop", label: "Two-person rule", note: "To navngivne personer godkender" },
+  ];
+  const rows = [
+    {
+      id: "read",
+      label: "Read-only",
+      example: "fx hente data, læse mail, lave sammenfatninger",
+      cells: {
+        auton: { kind: "ok", text: "Default OK" },
+        hitl: { kind: "info", text: "Audit-log" },
+        twop: { kind: "muted", text: "Overkill — sjældent relevant" },
+      },
+    },
+    {
+      id: "draft",
+      label: "Draft / Forslag",
+      example: "fx skrive udkast til mail, generere kode-PR, foreslå klassificering",
+      cells: {
+        auton: { kind: "info", text: "Log + monitor" },
+        hitl: { kind: "ok", text: "Default OK" },
+        twop: { kind: "warn", text: "Kun ved høj-risiko" },
+      },
+    },
+    {
+      id: "commit",
+      label: "Commit / Eksekvering",
+      example: "fx sende mail, oprette ticket, opdatere CRM-felt, betale faktura under tærskel",
+      cells: {
+        auton: { kind: "warn", text: "Approval-gate eller forhåndsgodkendt scope" },
+        hitl: { kind: "ok", text: "Default OK" },
+        twop: { kind: "info", text: "Krav i finans / HR" },
+      },
+    },
+    {
+      id: "irrev",
+      label: "Irreversibel",
+      example: "fx slette data, lukke konti, ekstern udmelding, kontrakt-underskrift",
+      cells: {
+        auton: { kind: "block", text: "Forbudt by default" },
+        hitl: { kind: "warn", text: "Approval-gate" },
+        twop: { kind: "ok", text: "Default for høj-konsekvens" },
+      },
+    },
+  ];
+
+  const cellStyle = (kind: string) => {
+    switch (kind) {
+      case "ok":
+        return "bg-success/15 text-success border-success/30";
+      case "info":
+        return "bg-info/15 text-info border-info/30";
+      case "warn":
+        return "bg-warning/15 text-warning border-warning/30";
+      case "block":
+        return "bg-danger/15 text-danger border-danger/30";
+      default:
+        return "bg-muted/30 text-muted-foreground border-border";
+    }
+  };
+
+  return (
+    <div className="mb-8 rounded-xl border border-primary/30 bg-primary/5 p-6">
+      <div className="mb-1 flex items-center gap-2">
+        <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">Værktøj</span>
+        <h3 className="font-display text-lg font-semibold text-foreground">Agent beslutnings-klasse matrix</h3>
+      </div>
+      <p className="mb-5 text-sm text-muted-foreground">
+        Brug matrixen til at sætte politik pr. agent: hvilken type beslutning må agenten træffe, og hvilken oversight-mode kræver det? Cellerne er <em>default-politikker</em> — virksomheden kan stramme eller løsne efter use case-risiko, men skal eksplicit dokumentere afvigelser.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr>
+              <th className="w-[18%] p-2 text-left align-bottom font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground">Beslutnings-klasse</th>
+              {cols.map((c) => (
+                <th key={c.id} className="p-2 text-left align-bottom">
+                  <p className="font-display text-xs font-semibold text-foreground">{c.label}</p>
+                  <p className="mt-0.5 text-[10px] font-normal text-muted-foreground">{c.note}</p>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id} className="border-t border-border/40">
+                <th className="p-3 text-left align-top">
+                  <p className="font-display text-sm font-semibold text-foreground">{row.label}</p>
+                  <p className="mt-1 text-[10px] font-normal text-muted-foreground">{row.example}</p>
+                </th>
+                {cols.map((c) => {
+                  const cell = row.cells[c.id as keyof typeof row.cells];
+                  return (
+                    <td key={c.id} className="p-2 align-top">
+                      <div className={`rounded-md border px-2.5 py-2 ${cellStyle(cell.kind)}`}>
+                        <p className="text-[11px] font-medium leading-snug">{cell.text}</p>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-4 grid grid-cols-4 gap-2 text-[10px]">
+        {[
+          { kind: "ok", label: "Default OK" },
+          { kind: "info", label: "Log / dokumenter" },
+          { kind: "warn", label: "Approval-gate" },
+          { kind: "block", label: "Forbudt by default" },
+        ].map((legend) => (
+          <span key={legend.kind} className="inline-flex items-center gap-1.5">
+            <span className={`inline-block h-2.5 w-2.5 rounded ${cellStyle(legend.kind).split(" ")[0]}`} />
+            <span className="text-muted-foreground">{legend.label}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Pillar View ──
 function PillarView({
   pillar,
@@ -687,6 +814,9 @@ function SubcategoryView({
           ))}
         </div>
       </div>
+
+      {/* Værktøj: Agent beslutnings-klasse matrix (kun for subkategori 1.4.4) */}
+      {subcategory.id === "beslutnings-graenser" && <AgentDecisionClassMatrix />}
 
       {/* Handlingspunkter */}
       <div className="mb-8 rounded-xl border border-border bg-card p-6">
