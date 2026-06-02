@@ -811,6 +811,164 @@ function UseCaseLifecycleFlow() {
   );
 }
 
+// ── Værktøj: Agent runtime control-plane diagram (marquee for governance) ──
+function AgentRuntimeControlPlane() {
+  const layers = [
+    {
+      icon: "📥",
+      title: "Request",
+      role: "Indgang",
+      detail: "Bruger-prompt, automatiseret event, agent-til-agent kald",
+      controls: ["Rate limiting per principal", "Source tagging (intern / ekstern / agent)", "Input-sanitisering"],
+      kind: "input",
+    },
+    {
+      icon: "🪪",
+      title: "Identitet & autorisation",
+      role: "Hvem er agenten? Hvilken principal?",
+      detail: "Non-Human Identity lookup, scoped credentials, kort-lived tokens",
+      controls: ["Unik agent-identitet (ikke shared service account)", "Principal-binding til menneskelig ejer", "Auto-deprovisioning ved off-board"],
+      kind: "policy",
+    },
+    {
+      icon: "📜",
+      title: "Policy engine",
+      role: "Hvad må agenten gøre her?",
+      detail: "Deterministisk regel-engine (OPA / Cedar) — ikke LLM-self-check",
+      controls: ["Tool allowlist + scope per agent", "Decision class (read / draft / commit / irreversible)", "Budget: token + tool-call + spend"],
+      kind: "policy",
+    },
+    {
+      icon: "🧠",
+      title: "Plan-validering",
+      role: "Er den planlagte handling acceptabel?",
+      detail: "Pre-execution check — særligt for irreversible handlinger",
+      controls: ["Prompt-injection detection (instruktion vs data)", "Irreversibel-handling flag", "Sandbox-eksekvering for nye skills"],
+      kind: "policy",
+    },
+    {
+      icon: "⚙️",
+      title: "Eksekvering + memory",
+      role: "Faktisk handling — tool calls + state",
+      detail: "Tool invocation, memory writes, A2A coordination",
+      controls: ["Mutual auth mellem agenter (Verifiable Credentials)", "Memory-skrivning logget + klassificeret", "Loop-detektion: max N hops"],
+      kind: "exec",
+    },
+    {
+      icon: "📡",
+      title: "Observability",
+      role: "Hvad skete der, hvorfor?",
+      detail: "OpenTelemetry GenAI semconv — strukturerede spans for hver agent-handling",
+      controls: ["Audit trail: input, plan, tool calls, output, log-hash", "Anomaly detection mod adfærds-baseline", "Cost dashboard real-time"],
+      kind: "monitor",
+    },
+    {
+      icon: "👁️",
+      title: "Human oversight",
+      role: "Sampling, eskalering, override",
+      detail: "Tieret menneskelig kontrol — ikke alt skal eskalere",
+      controls: ["Tier 1 lav-risiko: sampling-review (1 %)", "Tier 2 medium: real-time approval på grænser", "Tier 3 høj-risiko: two-person rule for irreversible"],
+      kind: "human",
+    },
+  ];
+
+  const kindStyle = (kind: string) => {
+    switch (kind) {
+      case "input":
+        return "border-info/40 bg-info/10";
+      case "policy":
+        return "border-primary/40 bg-primary/10";
+      case "exec":
+        return "border-warning/40 bg-warning/10";
+      case "monitor":
+        return "border-info/40 bg-info/10";
+      case "human":
+        return "border-success/40 bg-success/10";
+      default:
+        return "border-border bg-card";
+    }
+  };
+  const kindBadge = (kind: string) => {
+    switch (kind) {
+      case "input":
+        return "bg-info/20 text-info";
+      case "policy":
+        return "bg-primary/20 text-primary";
+      case "exec":
+        return "bg-warning/20 text-warning";
+      case "monitor":
+        return "bg-info/20 text-info";
+      case "human":
+        return "bg-success/20 text-success";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
+  const kindLabel = (kind: string) => {
+    switch (kind) {
+      case "input":
+        return "Indgang";
+      case "policy":
+        return "Policy";
+      case "exec":
+        return "Eksekvering";
+      case "monitor":
+        return "Observability";
+      case "human":
+        return "Menneskelig";
+      default:
+        return "";
+    }
+  };
+
+  return (
+    <div className="mb-8 rounded-xl border border-primary/30 bg-primary/5 p-6">
+      <div className="mb-1 flex items-center gap-2">
+        <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">Værktøj</span>
+        <h3 className="font-display text-lg font-semibold text-foreground">🛰️ Agent runtime control-plane</h3>
+      </div>
+      <p className="mb-5 text-sm text-muted-foreground">
+        Hvad sker der hvert gang en agent håndterer en request? Brug arkitekturen som tjekliste: hvert lag er en governance-overflade hvor jeres organisation skal kunne svare <em>"hvilken kontrol har vi her?"</em>
+      </p>
+      <div className="flex flex-col gap-2">
+        {layers.map((layer, i) => (
+          <div key={layer.title}>
+            <div className={`rounded-lg border p-4 ${kindStyle(layer.kind)}`}>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{layer.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <h4 className="font-display text-sm font-semibold text-foreground">{layer.title}</h4>
+                    <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${kindBadge(layer.kind)}`}>{kindLabel(layer.kind)}</span>
+                    <span className="text-[11px] text-muted-foreground">— {layer.role}</span>
+                  </div>
+                  <p className="mt-1 text-[12px] text-muted-foreground">{layer.detail}</p>
+                  <ul className="mt-2 grid gap-1 md:grid-cols-3">
+                    {layer.controls.map((c, j) => (
+                      <li key={j} className="flex items-start gap-1.5 text-[11px] text-foreground/90">
+                        <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-primary" />
+                        <span className="leading-snug">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {i < layers.length - 1 && (
+              <div className="flex justify-center py-1">
+                <div className="h-3 w-0.5 bg-border" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="mt-5 text-[11px] text-muted-foreground">
+        Reference: OWASP Top 10 for Agentic Applications 2026, OpenTelemetry GenAI semantic conventions, CSA Non-Human Identity Governance v1, MCP Authorization spec 2026-03-15.
+      </p>
+    </div>
+  );
+}
+
 // ── Pillar View ──
 function PillarView({
   pillar,
@@ -916,6 +1074,7 @@ function CategoryView({
 
       {/* Værktøj: AI Council RACI (kun for roller-ansvar) */}
       {category.id === "roller-ansvar" && <AiCouncilRaci />}
+      {category.id === "agent-runtime" && <AgentRuntimeControlPlane />}
 
       {/* Underkategorier */}
       <div className="mb-8 grid gap-4">
