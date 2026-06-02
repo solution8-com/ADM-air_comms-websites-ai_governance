@@ -74,7 +74,7 @@ for (const pillar of pillars) {
   generatePage(pillar.id, {
     title: `${pillar.name} — ${SITE_NAME}`,
     description: pillar.description,
-    canonical: `${SITE_ORIGIN}/${pillar.id}`,
+    canonical: `${SITE_ORIGIN}/${pillar.id}/`,
   });
   count++;
 }
@@ -83,7 +83,7 @@ for (const cat of categories) {
   generatePage(`${cat.pillar}/${cat.id}`, {
     title: `${cat.name} — ${SITE_NAME}`,
     description: cat.description,
-    canonical: `${SITE_ORIGIN}/${cat.pillar}/${cat.id}`,
+    canonical: `${SITE_ORIGIN}/${cat.pillar}/${cat.id}/`,
   });
   count++;
 
@@ -91,7 +91,7 @@ for (const cat of categories) {
     generatePage(`${cat.pillar}/${cat.id}/${sub.id}`, {
       title: `${sub.name} — ${cat.name} | ${SITE_NAME}`,
       description: sub.description,
-      canonical: `${SITE_ORIGIN}/${cat.pillar}/${cat.id}/${sub.id}`,
+      canonical: `${SITE_ORIGIN}/${cat.pillar}/${cat.id}/${sub.id}/`,
     });
     count++;
   }
