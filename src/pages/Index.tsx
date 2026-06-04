@@ -327,6 +327,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <a href="#hovedindhold" className="skip-link">Spring til indhold</a>
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
@@ -390,7 +391,7 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-8">
+      <main id="hovedindhold" className="container mx-auto px-6 py-8">
         {/* Søgeresultater */}
         {searchQuery && (
           <div className="fade-in mb-8">
@@ -479,7 +480,7 @@ const Index = () => {
         )}
 
         {/* Dashboard */}
-        {!searchQuery && !isToolsRoute && view === "dashboard" && <DashboardView onNavigate={navigate} />}
+        {!searchQuery && !isToolsRoute && view === "dashboard" && <DashboardView onNavigate={navigate} onOpenTool={openTool} />}
         {!searchQuery && !isToolsRoute && view === "pillar" && selectedPillar && (
           <PillarView pillar={selectedPillar} onNavigate={navigate} onBack={goBack} onOpenTool={openTool} />
         )}
@@ -523,7 +524,13 @@ const Index = () => {
 };
 
 // ── Dashboard View ──
-function DashboardView({ onNavigate }: { onNavigate: (v: View, p?: PillarId) => void }) {
+function DashboardView({
+  onNavigate,
+  onOpenTool,
+}: {
+  onNavigate: (v: View, p?: PillarId) => void;
+  onOpenTool: (slug: string) => void;
+}) {
   const totalItems = categories.reduce((sum, c) => sum + c.subcategories.length, 0);
   const criticalCount = categories.reduce(
     (sum, c) => sum + c.subcategories.filter((s) => s.severity === "critical").length,
@@ -534,13 +541,26 @@ function DashboardView({ onNavigate }: { onNavigate: (v: View, p?: PillarId) => 
     <div className="fade-in">
       {/* Hero */}
       <div className="mb-10">
-        <h2 className="font-display text-3xl font-bold text-foreground">
+        <h1 className="font-display text-3xl font-bold text-foreground">
           AI Governance <span className="text-primary text-glow">Overblik</span>
-        </h2>
+        </h1>
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           Praktisk overblik over AI-governance for danske organisationer — opdelt i Organisering, Udvikling og Drift. Syntese af NIST AI RMF, ISO/IEC 42001, EU AI Act, OECD, OWASP Top 10 for Agentic Applications 2026, Microsoft Responsible AI, Google SAIF, Anthropic RSP og dansk myndighedsvejledning. Med særlig vægt på <span className="text-primary font-medium">agent- og skill-governance</span> — det vigtigste nye styringsfelt i 2026.
         </p>
       </div>
+
+      {/* Værktøjer-sektion — alle sitets værktøjer, synlige fra dashboardet */}
+      <section aria-labelledby="vaerktoejer-heading" className="mb-8">
+        <div className="mb-3 flex items-baseline justify-between">
+          <h2 id="vaerktoejer-heading" className="font-display text-lg font-semibold text-foreground">Interaktive værktøjer</h2>
+          <span className="text-xs text-muted-foreground">Klik for at åbne · kan deles</span>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {tools.map((t) => (
+            <ToolTeaserCard key={t.slug} tool={t} onOpen={onOpenTool} />
+          ))}
+        </div>
+      </section>
 
       {/* Statistik */}
       <div className="mb-6 grid grid-cols-4 gap-4">
