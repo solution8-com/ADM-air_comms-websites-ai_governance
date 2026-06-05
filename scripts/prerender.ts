@@ -10,6 +10,10 @@ const SITE_ORIGIN = "https://ai-governance.dk";
 const SITE_NAME = "AI Governance";
 const DIST = "dist";
 
+type Crumb = { name: string; url: string };
+const ROOT_CRUMB: Crumb = { name: "Overblik", url: `${SITE_ORIGIN}/` };
+const pillarNameById = (id: string) => pillars.find((p) => p.id === id)?.name ?? id;
+
 const template = readFileSync(join(DIST, "index.html"), "utf-8");
 
 const esc = (s: string) =>
@@ -25,7 +29,7 @@ const truncate = (s: string, n: number) => (s.length > n ? s.slice(0, n - 1).tri
 
 function generatePage(
   routePath: string,
-  meta: { title: string; description: string; canonical: string }
+  meta: { title: string; description: string; canonical: string; breadcrumb?: Crumb[] }
 ) {
   const outDir = join(DIST, routePath);
   mkdirSync(outDir, { recursive: true });
@@ -65,6 +69,25 @@ function generatePage(
     `<meta name="twitter:description" content="${d}" />`
   );
 
+  // BreadcrumbList structured data → Google breadcrumb rich results. Lives in
+  // <head> so it's read without executing the SPA's client-side JS.
+  if (meta.breadcrumb && meta.breadcrumb.length > 1) {
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: meta.breadcrumb.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: b.name,
+        item: b.url,
+      })),
+    };
+    html = html.replace(
+      "</head>",
+      `    <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`
+    );
+  }
+
   writeFileSync(join(outDir, "index.html"), html);
 }
 
@@ -80,6 +103,7 @@ generatePage("vaerktoejer", {
   description:
     "Interaktive værktøjer til AI-governance: use case-livscyklus, AI Council RACI-matrix, agent runtime control-plane og governance-modenhedsradar. Del direkte på LinkedIn eller i mail.",
   canonical: toolsCanonical,
+  breadcrumb: [ROOT_CRUMB, { name: "Værktøjer", url: toolsCanonical }],
 });
 sitemap.push({ loc: toolsCanonical, priority: "0.8" });
 count++;
@@ -90,6 +114,7 @@ for (const tool of toolsMeta) {
     title: `${tool.title} — Værktøj | ${SITE_NAME}`,
     description: tool.description,
     canonical: toolCanonical,
+    breadcrumb: [ROOT_CRUMB, { name: "Værktøjer", url: toolsCanonical }, { name: tool.title, url: toolCanonical }],
   });
   sitemap.push({ loc: toolCanonical, priority: "0.7" });
   count++;
@@ -101,6 +126,7 @@ for (const pillar of pillars) {
     title: `${pillar.name} — ${SITE_NAME}`,
     description: pillar.description,
     canonical,
+    breadcrumb: [ROOT_CRUMB, { name: pillar.name, url: canonical }],
   });
   sitemap.push({ loc: canonical, priority: "0.8" });
   count++;
@@ -108,10 +134,12 @@ for (const pillar of pillars) {
 
 for (const cat of categories) {
   const catCanonical = `${SITE_ORIGIN}/${cat.pillar}/${cat.id}/`;
+  const pillarCrumb: Crumb = { name: pillarNameById(cat.pillar), url: `${SITE_ORIGIN}/${cat.pillar}/` };
   generatePage(`${cat.pillar}/${cat.id}`, {
     title: `${cat.name} — ${SITE_NAME}`,
     description: cat.description,
     canonical: catCanonical,
+    breadcrumb: [ROOT_CRUMB, pillarCrumb, { name: cat.name, url: catCanonical }],
   });
   sitemap.push({ loc: catCanonical, priority: "0.7" });
   count++;
@@ -122,6 +150,7 @@ for (const cat of categories) {
       title: `${sub.name} — ${cat.name} | ${SITE_NAME}`,
       description: sub.description,
       canonical: subCanonical,
+      breadcrumb: [ROOT_CRUMB, pillarCrumb, { name: cat.name, url: catCanonical }, { name: sub.name, url: subCanonical }],
     });
     sitemap.push({ loc: subCanonical, priority: "0.6" });
     count++;

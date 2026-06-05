@@ -1446,7 +1446,7 @@ function PillarView({
         <div className="flex items-center gap-3">
           <span className="text-3xl">{pillarData.icon}</span>
           <div>
-            <h2 className="font-display text-2xl font-bold text-foreground">{pillarData.name}</h2>
+            <h1 className="font-display text-2xl font-bold text-foreground">{pillarData.name}</h1>
             <p className="text-sm text-primary/70">{pillarData.subtitle}</p>
           </div>
         </div>
@@ -1526,7 +1526,7 @@ function CategoryView({
         <div className="flex items-center gap-3">
           <span className="text-3xl">{category.icon}</span>
           <div>
-            <h2 className="font-display text-2xl font-bold text-foreground">{category.name}</h2>
+            <h1 className="font-display text-2xl font-bold text-foreground">{category.name}</h1>
           </div>
         </div>
         <p className="mt-3 max-w-3xl text-sm text-muted-foreground">{category.description}</p>
@@ -1641,7 +1641,7 @@ function SubcategoryView({
             {subcategory.severity === "critical" ? "kritisk" : subcategory.severity === "high" ? "høj" : subcategory.severity === "medium" ? "middel" : "lav"} prioritet
           </span>
         </div>
-        <h2 className="font-display text-2xl font-bold text-foreground">{subcategory.name}</h2>
+        <h1 className="font-display text-2xl font-bold text-foreground">{subcategory.name}</h1>
         <p className="mt-3 text-sm text-secondary-foreground leading-relaxed">{subcategory.description}</p>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {subcategory.tags.map((tag) => (
@@ -1900,7 +1900,7 @@ function ToolsIndex({ onHome, onOpenTool }: { onHome: () => void; onOpenTool: (s
       <div className="mb-8">
         <div className="flex items-center gap-3">
           <span className="text-3xl">🧰</span>
-          <h2 className="font-display text-2xl font-bold text-foreground">Værktøjer</h2>
+          <h1 className="font-display text-2xl font-bold text-foreground">Værktøjer</h1>
         </div>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           Interaktive værktøjer til AI-governance — livscyklus-flow, RACI-matrix, control-plane-arkitektur og modenheds-selvvurdering. Hvert værktøj har sin egen side, så det kan deles direkte på LinkedIn, i mail eller i en præsentation.
