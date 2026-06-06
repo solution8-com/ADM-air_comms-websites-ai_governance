@@ -1268,10 +1268,14 @@ type RadarAxis = {
   levels: string[];
 };
 
-function RadarChart({ axes, values, size = 280 }: { axes: RadarAxis[]; values: number[]; size?: number }) {
+function RadarChart({ axes, values, size = 320 }: { axes: RadarAxis[]; values: number[]; size?: number }) {
   const cx = size / 2;
   const cy = size / 2;
   const R = size / 2 - 50;
+  // Horizontal/vertical padding in the viewBox so axis labels (which extend
+  // beyond R) aren't clipped at the SVG edge. Kept symmetric so the chart stays
+  // square; element width/height stay = size, so no layout reflow.
+  const PAD = 64;
   const N = axes.length;
   const maxValue = 4;
 
@@ -1287,7 +1291,7 @@ function RadarChart({ axes, values, size = 280 }: { axes: RadarAxis[]; values: n
   );
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="shrink-0">
+    <svg width={size} height={size} viewBox={`${-PAD} ${-PAD} ${size + PAD * 2} ${size + PAD * 2}`} className="shrink-0">
       {guides.map((points, i) => (
         <polygon
           key={i}
