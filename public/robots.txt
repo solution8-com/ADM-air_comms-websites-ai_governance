@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-governance.dk/sitemap.xml
+Sitemap: https://www.ai-governance.dk/sitemap.xml

@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { pillars, categories, toolsMeta } from "../src/data/governanceData";
 
-const SITE_ORIGIN = "https://ai-governance.dk";
+const SITE_ORIGIN = "https://www.ai-governance.dk";
 const SITE_NAME = "AI Governance";
 const DIST = "dist";
 
