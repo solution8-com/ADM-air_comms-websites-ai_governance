@@ -85,12 +85,23 @@ const tools: ToolConfig[] = toolsMeta.map((meta) => ({
 const getTool = (slug: string): ToolConfig =>
   tools.find((t) => t.slug === slug) ?? tools[0];
 
+// ── Tværgående tema: Agent governance ──
+// Governance has 3 agent-dedicated categories (one per pillar) plus a couple of
+// agent-relevant stragglers in other categories. A subcategory belongs to the
+// cross-cutting "Agent governance" theme if its category is one of the three OR
+// its id is in the explicit extras list.
+const AGENT_CATEGORY_IDS = ["agent-skill-org", "agent-skill-design", "agent-runtime"];
+const AGENT_EXTRA_SUB_IDS = ["mcp-governance", "otel-genai-observability"];
+const isAgentSub = (categoryId: string, subId: string) =>
+  AGENT_CATEGORY_IDS.includes(categoryId) || AGENT_EXTRA_SUB_IDS.includes(subId);
+
 function Breadcrumbs({
   pillar,
   category,
   subcategory,
   tool,
   toolsRoot,
+  theme,
   onHome,
   onPillar,
   onCategory,
@@ -101,6 +112,7 @@ function Breadcrumbs({
   subcategory?: { id: string; name: string };
   tool?: { name: string };
   toolsRoot?: boolean;
+  theme?: { name: string };
   onHome: () => void;
   onPillar?: () => void;
   onCategory?: () => void;
@@ -109,6 +121,17 @@ function Breadcrumbs({
   const sep = (
     <span aria-hidden="true" className="text-muted-foreground/40">›</span>
   );
+
+  // Tema path: Overblik › <Tema>
+  if (theme) {
+    return (
+      <nav aria-label="Brødkrummer" className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+        <button onClick={onHome} className="hover:text-primary transition-colors">Overblik</button>
+        {sep}
+        <span className="text-foreground font-medium" aria-current="page">{theme.name}</span>
+      </nav>
+    );
+  }
 
   // Tools path: Overblik › Værktøjer [› Tool name]
   if (toolsRoot || tool) {
@@ -194,6 +217,8 @@ const Index = () => {
   // Tools route detection (literal /vaerktoejer segment)
   const isToolsRoute =
     location.pathname === "/vaerktoejer" || location.pathname.startsWith("/vaerktoejer/");
+  // Cross-cutting theme route (literal /agentisk)
+  const isAgenticRoute = location.pathname === "/agentisk" || location.pathname === "/agentisk/";
   const selectedTool: ToolConfig | null = useMemo(
     () => (params.toolId ? tools.find((t) => t.slug === params.toolId) ?? null : null),
     [params.toolId]
@@ -237,13 +262,15 @@ const Index = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [params.pillarId, params.categoryId, params.subcategoryId, params.toolId]);
+  }, [location.pathname]);
 
   // Keep tab title in sync after client-side nav (mirrors scripts/prerender.ts).
   useEffect(() => {
     const SITE = "AI Governance";
     let title: string;
-    if (isToolsRoute && selectedTool) {
+    if (isAgenticRoute) {
+      title = `Agent governance — tværgående tema | ${SITE}`;
+    } else if (isToolsRoute && selectedTool) {
       title = `${selectedTool.title} — Værktøj | ${SITE}`;
     } else if (isToolsRoute) {
       title = `Værktøjer — interaktive AI-governance-værktøjer | ${SITE}`;
@@ -258,7 +285,7 @@ const Index = () => {
       title = "AI Governance – Praktisk overblik til danske organisationer | NIST · ISO 42001 · EU AI Act";
     }
     document.title = title;
-  }, [selectedPillar, selectedCategory, selectedSubcategory, isToolsRoute, selectedTool]);
+  }, [selectedPillar, selectedCategory, selectedSubcategory, isToolsRoute, selectedTool, isAgenticRoute]);
 
   const navigate = (
     newView: View,
@@ -289,6 +316,7 @@ const Index = () => {
 
   const openTool = (slug: string) => routerNavigate(`/vaerktoejer/${slug}`);
   const openToolsIndex = () => routerNavigate("/vaerktoejer");
+  const openAgentic = () => routerNavigate("/agentisk");
 
   const searchInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -479,15 +507,20 @@ const Index = () => {
           <ToolsIndex onHome={() => navigate("dashboard")} onOpenTool={openTool} />
         )}
 
+        {/* Tværgående tema: Agent governance */}
+        {!searchQuery && isAgenticRoute && (
+          <AgenticView onNavigate={navigate} onHome={() => navigate("dashboard")} />
+        )}
+
         {/* Dashboard */}
-        {!searchQuery && !isToolsRoute && view === "dashboard" && <DashboardView onNavigate={navigate} onOpenTool={openTool} />}
-        {!searchQuery && !isToolsRoute && view === "pillar" && selectedPillar && (
+        {!searchQuery && !isToolsRoute && !isAgenticRoute && view === "dashboard" && <DashboardView onNavigate={navigate} onOpenTool={openTool} onOpenAgentic={openAgentic} />}
+        {!searchQuery && !isToolsRoute && !isAgenticRoute && view === "pillar" && selectedPillar && (
           <PillarView pillar={selectedPillar} onNavigate={navigate} onBack={goBack} onOpenTool={openTool} />
         )}
-        {!searchQuery && !isToolsRoute && view === "category" && selectedCategory && (
+        {!searchQuery && !isToolsRoute && !isAgenticRoute && view === "category" && selectedCategory && (
           <CategoryView category={selectedCategory} onNavigate={navigate} onBack={goBack} onOpenTool={openTool} />
         )}
-        {!searchQuery && !isToolsRoute && view === "subcategory" && selectedSubcategory && selectedCategory && (
+        {!searchQuery && !isToolsRoute && !isAgenticRoute && view === "subcategory" && selectedSubcategory && selectedCategory && (
           <SubcategoryView
             subcategory={selectedSubcategory}
             category={selectedCategory}
@@ -527,10 +560,16 @@ const Index = () => {
 function DashboardView({
   onNavigate,
   onOpenTool,
+  onOpenAgentic,
 }: {
   onNavigate: (v: View, p?: PillarId) => void;
   onOpenTool: (slug: string) => void;
+  onOpenAgentic: () => void;
 }) {
+  const agentCount = categories.reduce(
+    (sum, c) => sum + c.subcategories.filter((s) => isAgentSub(c.id, s.id)).length,
+    0
+  );
   const totalItems = categories.reduce((sum, c) => sum + c.subcategories.length, 0);
   const criticalCount = categories.reduce(
     (sum, c) => sum + c.subcategories.filter((s) => s.severity === "critical").length,
@@ -612,6 +651,28 @@ function DashboardView({
           );
         })}
       </div>
+
+      {/* Tværgående tema: Agent governance — en linse PÅ TVÆRS af de tre søjler, ikke en 4. søjle */}
+      <button
+        onClick={onOpenAgentic}
+        className="card-hover group mt-6 flex w-full items-center gap-4 rounded-xl border border-primary/30 bg-primary/5 p-5 text-left"
+      >
+        <span className="text-3xl leading-none">🤖</span>
+        <div className="min-w-0 flex-1">
+          <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
+            Tema · på tværs af søjlerne
+          </span>
+          <p className="mt-2 font-display text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+            Agent governance
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {agentCount} emner om styring af autonome agenter — samlet på tværs af Organisering, Udvikling og Drift.
+          </p>
+        </div>
+        <span className="hidden shrink-0 items-center gap-1 text-sm font-medium text-primary sm:inline-flex">
+          Åbn tema <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </span>
+      </button>
 
       <InlineNewsletterPrompt
         hook="Få et månedligt overblik på 5 minutter"
@@ -1987,6 +2048,85 @@ function ToolPage({ tool, onHome, onTools }: { tool: ToolConfig; onHome: () => v
         className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
       >
         <ArrowLeft className="h-4 w-4" /> Alle værktøjer
+      </button>
+    </div>
+  );
+}
+
+// ── Tværgående tema: Agent governance (/agentisk) ──
+// A cross-cutting lens, NOT a 4th pillar: gathers the agent-governance content
+// (the 3 agent-dedicated categories — one per pillar — plus a couple of agent
+// stragglers in other categories) and groups it BY pillar so the
+// Organisering/Udvikling/Drift structure is reinforced rather than replaced.
+function AgenticView({
+  onNavigate,
+  onHome,
+}: {
+  onNavigate: (v: View, p?: PillarId, c?: Category, s?: Subcategory) => void;
+  onHome: () => void;
+}) {
+  const sevLabel = (s: string) =>
+    s === "critical" ? "kritisk" : s === "high" ? "høj" : s === "medium" ? "middel" : "lav";
+
+  const groups = pillars
+    .map((p) => ({
+      pillar: p,
+      items: getCategoriesByPillar(p.id).flatMap((c) =>
+        c.subcategories.filter((s) => isAgentSub(c.id, s.id)).map((s) => ({ cat: c, sub: s }))
+      ),
+    }))
+    .filter((g) => g.items.length > 0);
+  const total = groups.reduce((n, g) => n + g.items.length, 0);
+
+  return (
+    <div className="fade-in">
+      <Breadcrumbs theme={{ name: "Agent governance" }} onHome={onHome} />
+
+      <div className="mb-8">
+        <div className="flex items-center gap-3">
+          <span className="text-3xl">🤖</span>
+          <h1 className="font-display text-2xl font-bold text-foreground">
+            Agent governance <span className="text-primary text-glow">Tema</span>
+          </h1>
+        </div>
+        <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+          Et tværgående tema, ikke en selvstændig søjle: {total} emner om styring af autonome AI-agenter (organisering, build-time-design og runtime — inkl. agent-identitet, beslutningsgrænser, A2A/MCP, sandboxing og observability) samlet ét sted, men grupperet efter de tre søjler. Kerneområdet for AI-governance i 2026.
+        </p>
+      </div>
+
+      {groups.map((g) => (
+        <div key={g.pillar.id} className="mb-8">
+          <h2 className="mb-2 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            {g.pillar.icon} {g.pillar.name} <span className="text-muted-foreground/60">({g.items.length})</span>
+          </h2>
+          <div className="grid gap-2">
+            {g.items.map(({ cat, sub }) => (
+              <button
+                key={`${cat.id}-${sub.id}`}
+                onClick={() => onNavigate("subcategory", cat.pillar, cat, sub)}
+                className="card-hover flex items-center gap-4 rounded-lg border border-border bg-card/60 p-3 text-left"
+              >
+                <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] font-bold uppercase ${getSeverityColor(sub.severity)}`}>
+                  {sevLabel(sub.severity)}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-sm font-medium text-foreground">{sub.name}</p>
+                  <p className="line-clamp-1 text-xs text-muted-foreground">
+                    {cat.icon} {cat.name} · {sub.description}
+                  </p>
+                </div>
+                <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <button
+        onClick={onHome}
+        className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft className="h-4 w-4" /> Tilbage til overblik
       </button>
     </div>
   );

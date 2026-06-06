@@ -120,6 +120,18 @@ for (const tool of toolsMeta) {
   count++;
 }
 
+// Tværgående tema: Agent governance (/agentisk)
+const agenticCanonical = `${SITE_ORIGIN}/agentisk/`;
+generatePage("agentisk", {
+  title: `Agent governance — tværgående tema | ${SITE_NAME}`,
+  description:
+    "Samlet overblik over governance af autonome AI-agenter på tværs af organisering, udvikling og drift: agent-identitet, beslutningsgrænser, A2A/MCP, sandboxing, observability og rogue-agent-detektion.",
+  canonical: agenticCanonical,
+  breadcrumb: [ROOT_CRUMB, { name: "Agent governance", url: agenticCanonical }],
+});
+sitemap.push({ loc: agenticCanonical, priority: "0.8" });
+count++;
+
 for (const pillar of pillars) {
   const canonical = `${SITE_ORIGIN}/${pillar.id}/`;
   generatePage(pillar.id, {
