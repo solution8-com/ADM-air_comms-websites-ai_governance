@@ -274,20 +274,20 @@ const Index = () => {
     const SITE = "AI Governance";
     let title: string;
     if (isAgenticRoute) {
-      title = `Agent governance — tværgående tema | ${SITE}`;
+      title = `Agent governance - tværgående tema | ${SITE}`;
     } else if (isToolsRoute && selectedTool) {
-      title = `${selectedTool.title} — Værktøj | ${SITE}`;
+      title = `${selectedTool.title} - Værktøj | ${SITE}`;
     } else if (isToolsRoute) {
-      title = `Værktøjer — interaktive AI-governance-værktøjer | ${SITE}`;
+      title = `Værktøjer - interaktive AI-governance-værktøjer | ${SITE}`;
     } else if (selectedSubcategory && selectedCategory) {
-      title = `${selectedSubcategory.name} — ${selectedCategory.name} | ${SITE}`;
+      title = `${selectedSubcategory.name} - ${selectedCategory.name} | ${SITE}`;
     } else if (selectedCategory) {
-      title = `${selectedCategory.name} — ${SITE}`;
+      title = `${selectedCategory.name} - ${SITE}`;
     } else if (selectedPillar) {
       const p = pillars.find((x) => x.id === selectedPillar);
-      title = p ? `${p.name} — ${SITE}` : SITE;
+      title = p ? `${p.name} - ${SITE}` : SITE;
     } else {
-      title = "AI Governance – Praktisk overblik til danske organisationer | NIST · ISO 42001 · EU AI Act";
+      title = "AI Governance - Praktisk overblik til danske organisationer | NIST · ISO 42001 · EU AI Act";
     }
     document.title = title;
   }, [selectedPillar, selectedCategory, selectedSubcategory, isToolsRoute, selectedTool, isAgenticRoute]);
@@ -556,7 +556,7 @@ const Index = () => {
         )}
       </main>
 
-      {/* Newsletter + CTA strip — hide booking column on subcategory pages
+      {/* Newsletter + CTA strip - hide booking column on subcategory pages
           (they already have a contextual "Book sparring" card). */}
       <NewsletterCTA showBooking={view !== "subcategory"} />
 
@@ -593,11 +593,11 @@ function DashboardView({
           AI Governance <span className="text-primary text-glow">Overblik</span>
         </h1>
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-          Praktisk overblik over AI-governance for danske organisationer — opdelt i Organisering, Udvikling og Drift. Syntese af NIST AI RMF, ISO/IEC 42001, EU AI Act, OECD, OWASP Top 10 for Agentic Applications 2026, Microsoft Responsible AI, Google SAIF, Anthropic RSP og dansk myndighedsvejledning. Med særlig vægt på <span className="text-primary font-medium">agent- og skill-governance</span> — det vigtigste nye styringsfelt i 2026.
+          Praktisk overblik over AI-governance for danske organisationer - opdelt i Organisering, Udvikling og Drift. Syntese af NIST AI RMF, ISO/IEC 42001, EU AI Act, OECD, OWASP Top 10 for Agentic Applications 2026, Microsoft Responsible AI, Google SAIF, Anthropic RSP og dansk myndighedsvejledning. Med særlig vægt på <span className="text-primary font-medium">agent- og skill-governance</span> - det vigtigste nye styringsfelt i 2026.
         </p>
       </div>
 
-      {/* Værktøjer-sektion — alle sitets værktøjer, synlige fra dashboardet */}
+      {/* Værktøjer-sektion - alle sitets værktøjer, synlige fra dashboardet */}
       <section aria-labelledby="vaerktoejer-heading" className="mb-8">
         <div className="mb-3 flex items-baseline justify-between">
           <h2 id="vaerktoejer-heading" className="font-display text-lg font-semibold text-foreground">Interaktive værktøjer</h2>
@@ -661,7 +661,7 @@ function DashboardView({
         })}
       </div>
 
-      {/* Tværgående tema: Agent governance — en linse PÅ TVÆRS af de tre søjler, ikke en 4. søjle */}
+      {/* Tværgående tema: Agent governance - en linse PÅ TVÆRS af de tre søjler, ikke en 4. søjle */}
       <button
         onClick={onOpenAgentic}
         className="card-hover group mt-6 flex w-full items-center gap-4 rounded-xl border border-primary/30 bg-primary/5 p-5 text-left"
@@ -675,7 +675,7 @@ function DashboardView({
             Agent governance
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
-            {agentCount} emner om styring af autonome agenter — samlet på tværs af Organisering, Udvikling og Drift.
+            {agentCount} emner om styring af autonome agenter - samlet på tværs af Organisering, Udvikling og Drift.
           </p>
         </div>
         <span className="hidden shrink-0 items-center gap-1 text-sm font-medium text-primary sm:inline-flex">
@@ -703,7 +703,7 @@ function DashboardView({
             </div>
             <div className="min-w-0">
               <p className="font-display text-sm font-semibold text-foreground">NIST AI Risk Management Framework</p>
-              <p className="mt-1 text-xs text-muted-foreground">Govern–Map–Measure–Manage. Frivilligt men de facto-baseline for AI-governance. GenAI-profilen (NIST AI 600-1) tilføjer 200+ kontroller for LLM-systemer.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Govern - Map - Measure - Manage. Frivilligt men de facto-baseline for AI-governance. GenAI-profilen (NIST AI 600-1) tilføjer 200+ kontroller for LLM-systemer.</p>
             </div>
             <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           </a>
@@ -748,7 +748,7 @@ function DashboardView({
             </div>
             <div className="min-w-0">
               <p className="font-display text-sm font-semibold text-foreground">OWASP Top 10 for Agentic Applications 2026</p>
-              <p className="mt-1 text-xs text-muted-foreground">Det førende framework for agent-governance. Planning, tool use, identity, memory, cascading failures, rogue agents — kerneområdet for 2026.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Det førende framework for agent-governance. Planning, tool use, identity, memory, cascading failures, rogue agents - kerneområdet for 2026.</p>
             </div>
             <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           </a>
@@ -763,7 +763,7 @@ function DashboardView({
             </div>
             <div className="min-w-0">
               <p className="font-display text-sm font-semibold text-foreground">OECD AI Principles (2024)</p>
-              <p className="mt-1 text-xs text-muted-foreground">Soft law med stærk international vægt. Inclusive growth, fairness, transparency, robustness, accountability — basis for både EU AI Act og Council of Europe Framework Convention.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Soft law med stærk international vægt. Inclusive growth, fairness, transparency, robustness, accountability - basis for både EU AI Act og Council of Europe Framework Convention.</p>
             </div>
             <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           </a>
@@ -778,7 +778,7 @@ function DashboardView({
             </div>
             <div className="min-w-0">
               <p className="font-display text-sm font-semibold text-foreground">Microsoft Responsible AI Standard v2</p>
-              <p className="mt-1 text-xs text-muted-foreground">Mainstream operationelt framework. Sensitive uses, oversight requirements, impact assessment — bredt adopteret i enterprise AI-governance.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Mainstream operationelt framework. Sensitive uses, oversight requirements, impact assessment - bredt adopteret i enterprise AI-governance.</p>
             </div>
             <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           </a>
@@ -835,7 +835,7 @@ function NewsFeed() {
           </a>
         ))}
       </div>
-      <p className="mt-3 text-[11px] text-muted-foreground">Kuraterede nyheder fra autoritative kilder — opdateres ugentligt.</p>
+      <p className="mt-3 text-[11px] text-muted-foreground">Kuraterede nyheder fra autoritative kilder - opdateres ugentligt.</p>
     </section>
   );
 }
@@ -856,7 +856,7 @@ function AgentDecisionClassMatrix() {
       cells: {
         auton: { kind: "ok", text: "Default OK" },
         hitl: { kind: "info", text: "Audit-log" },
-        twop: { kind: "muted", text: "Overkill — sjældent relevant" },
+        twop: { kind: "muted", text: "Overkill - sjældent relevant" },
       },
     },
     {
@@ -913,7 +913,7 @@ function AgentDecisionClassMatrix() {
         <h3 className="font-display text-lg font-semibold text-foreground">Agent beslutnings-klasse matrix</h3>
       </div>
       <p className="mb-5 text-sm text-muted-foreground">
-        Brug matrixen til at sætte politik pr. agent: hvilken type beslutning må agenten træffe, og hvilken oversight-mode kræver det? Cellerne er <em>default-politikker</em> — virksomheden kan stramme eller løsne efter use case-risiko, men skal eksplicit dokumentere afvigelser.
+        Brug matrixen til at sætte politik pr. agent: hvilken type beslutning må agenten træffe, og hvilken oversight-mode kræver det? Cellerne er <em>default-politikker</em> - virksomheden kan stramme eller løsne efter use case-risiko, men skal eksplicit dokumentere afvigelser.
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -1064,7 +1064,7 @@ function AiCouncilRaci() {
         <h3 className="font-display text-lg font-semibold text-foreground">AI Council RACI</h3>
       </div>
       <p className="mb-5 text-sm text-muted-foreground">
-        Default RACI-allokering for governance-beslutninger på tværs af typiske roller. Brug som udgangspunkt for jeres egen — udskift roller efter jeres organisationsstruktur, og dokumentér afvigelser. <strong className="text-foreground">R</strong> = Responsible · <strong className="text-foreground">A</strong> = Accountable · <strong className="text-foreground">C</strong> = Consulted · <strong className="text-foreground">I</strong> = Informed.
+        Default RACI-allokering for governance-beslutninger på tværs af typiske roller. Brug som udgangspunkt for jeres egen - udskift roller efter jeres organisationsstruktur, og dokumentér afvigelser. <strong className="text-foreground">R</strong> = Responsible · <strong className="text-foreground">A</strong> = Accountable · <strong className="text-foreground">C</strong> = Consulted · <strong className="text-foreground">I</strong> = Informed.
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -1103,10 +1103,10 @@ function AiCouncilRaci() {
       </div>
       <div className="mt-4 grid grid-cols-2 gap-1.5 text-[10px] md:grid-cols-4">
         {[
-          { v: "R", label: "Responsible — udfører arbejdet" },
-          { v: "A", label: "Accountable — bærer det endelige ansvar" },
-          { v: "C", label: "Consulted — input før beslutning" },
-          { v: "I", label: "Informed — orienteres efter" },
+          { v: "R", label: "Responsible - udfører arbejdet" },
+          { v: "A", label: "Accountable - bærer det endelige ansvar" },
+          { v: "C", label: "Consulted - input før beslutning" },
+          { v: "I", label: "Informed - orienteres efter" },
         ].map((legend) => (
           <span key={legend.v} className="inline-flex items-center gap-1.5">
             <span className={`inline-flex h-4 w-4 items-center justify-center rounded border font-display text-[9px] font-bold ${cellStyle(legend.v)}`}>{legend.v}</span>
@@ -1138,7 +1138,7 @@ function UseCaseLifecycleFlow() {
         <h3 className="font-display text-lg font-semibold text-foreground">Use case-livscyklus</h3>
       </div>
       <p className="mb-5 text-sm text-muted-foreground">
-        Workflowet fra idé til afvikling. Hver gate har en navngiven ejer, et adgangskriterium og et kill-kriterium. Brug som skabelon — udfyld faktiske navne i jeres egen organisation.
+        Workflowet fra idé til afvikling. Hver gate har en navngiven ejer, et adgangskriterium og et kill-kriterium. Brug som skabelon - udfyld faktiske navne i jeres egen organisation.
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {stages.map((stage, i) => (
@@ -1158,7 +1158,7 @@ function UseCaseLifecycleFlow() {
         ))}
       </div>
       <p className="mt-4 text-[11px] text-muted-foreground">
-        Bemærk: ejer-rollerne hænger sammen med <strong className="text-foreground">AI Council RACI</strong>-matrixen i kategori 1.2. Et use case kan kun bevæge sig til næste fase når gate er opfyldt — kill-kriterier skal også checkes løbende.
+        Bemærk: ejer-rollerne hænger sammen med <strong className="text-foreground">AI Council RACI</strong>-matrixen i kategori 1.2. Et use case kan kun bevæge sig til næste fase når gate er opfyldt - kill-kriterier skal også checkes løbende.
       </p>
     </div>
   );
@@ -1187,7 +1187,7 @@ function AgentRuntimeControlPlane() {
       icon: "📜",
       title: "Policy engine",
       role: "Hvad må agenten gøre her?",
-      detail: "Deterministisk regel-engine (OPA / Cedar) — ikke LLM-self-check",
+      detail: "Deterministisk regel-engine (OPA / Cedar) - ikke LLM-self-check",
       controls: ["Tool allowlist + scope per agent", "Decision class (read / draft / commit / irreversible)", "Budget: token + tool-call + spend"],
       kind: "policy",
     },
@@ -1195,14 +1195,14 @@ function AgentRuntimeControlPlane() {
       icon: "🧠",
       title: "Plan-validering",
       role: "Er den planlagte handling acceptabel?",
-      detail: "Pre-execution check — særligt for irreversible handlinger",
+      detail: "Pre-execution check - særligt for irreversible handlinger",
       controls: ["Prompt-injection detection (instruktion vs data)", "Irreversibel-handling flag", "Sandbox-eksekvering for nye skills"],
       kind: "policy",
     },
     {
       icon: "⚙️",
       title: "Eksekvering + memory",
-      role: "Faktisk handling — tool calls + state",
+      role: "Faktisk handling - tool calls + state",
       detail: "Tool invocation, memory writes, A2A coordination",
       controls: ["Mutual auth mellem agenter (Verifiable Credentials)", "Memory-skrivning logget + klassificeret", "Loop-detektion: max N hops"],
       kind: "exec",
@@ -1211,7 +1211,7 @@ function AgentRuntimeControlPlane() {
       icon: "📡",
       title: "Observability",
       role: "Hvad skete der, hvorfor?",
-      detail: "OpenTelemetry GenAI semconv — strukturerede spans for hver agent-handling",
+      detail: "OpenTelemetry GenAI semconv - strukturerede spans for hver agent-handling",
       controls: ["Audit trail: input, plan, tool calls, output, log-hash", "Anomaly detection mod adfærds-baseline", "Cost dashboard real-time"],
       kind: "monitor",
     },
@@ -1219,7 +1219,7 @@ function AgentRuntimeControlPlane() {
       icon: "👁️",
       title: "Human oversight",
       role: "Sampling, eskalering, override",
-      detail: "Tieret menneskelig kontrol — ikke alt skal eskalere",
+      detail: "Tieret menneskelig kontrol - ikke alt skal eskalere",
       controls: ["Tier 1 lav-risiko: sampling-review (1 %)", "Tier 2 medium: real-time approval på grænser", "Tier 3 høj-risiko: two-person rule for irreversible"],
       kind: "human",
     },
@@ -1293,7 +1293,7 @@ function AgentRuntimeControlPlane() {
                   <div className="flex flex-wrap items-baseline gap-2">
                     <h4 className="font-display text-sm font-semibold text-foreground">{layer.title}</h4>
                     <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${kindBadge(layer.kind)}`}>{kindLabel(layer.kind)}</span>
-                    <span className="text-[11px] text-muted-foreground">— {layer.role}</span>
+                    <span className="text-[11px] text-muted-foreground"> - {layer.role}</span>
                   </div>
                   <p className="mt-1 text-[12px] text-muted-foreground">{layer.detail}</p>
                   <ul className="mt-2 grid gap-1 md:grid-cols-3">
@@ -1409,60 +1409,60 @@ function GovernanceMaturityRadar() {
       id: "govern",
       label: "Strategi & Mandat",
       levels: [
-        "Ad hoc — ingen formel AI-strategi eller bestyrelsesmandat",
-        "Defineret — skrevet AI-strategi godkendt af direktion, no-go-områder dokumenteret",
-        "Styret — kvartalsvis bestyrelses-rapportering, navngiven C-leder med stop-build authority",
-        "Optimeret — AI-strategi integreret i forretningsstrategi, KPI'er målt og publiceret",
+        "Ad hoc - ingen formel AI-strategi eller bestyrelsesmandat",
+        "Defineret - skrevet AI-strategi godkendt af direktion, no-go-områder dokumenteret",
+        "Styret - kvartalsvis bestyrelses-rapportering, navngiven C-leder med stop-build authority",
+        "Optimeret - AI-strategi integreret i forretningsstrategi, KPI'er målt og publiceret",
       ],
     },
     {
       id: "map",
       label: "Use case-livscyklus",
       levels: [
-        "Ad hoc — use cases starter uden formel proces",
-        "Defineret — intake-form, triage, klassificeringsproces",
-        "Styret — alle 8 lifecycle-gates implementeret, kill-criteria defineret",
-        "Optimeret — automatisk klassificering, portefølje-dashboard, kvartalsvis kill rate",
+        "Ad hoc - use cases starter uden formel proces",
+        "Defineret - intake-form, triage, klassificeringsproces",
+        "Styret - alle 8 lifecycle-gates implementeret, kill-criteria defineret",
+        "Optimeret - automatisk klassificering, portefølje-dashboard, kvartalsvis kill rate",
       ],
     },
     {
       id: "measure",
       label: "Risiko & evaluering",
       levels: [
-        "Ad hoc — ingen formel testning før produktion",
-        "Defineret — bias-test + accuracy-test før release",
-        "Styret — red team-events, dansk-sproget eval-suite, model cards",
-        "Optimeret — kontinuerlig adversarial testing i CI/CD, ekstern audit",
+        "Ad hoc - ingen formel testning før produktion",
+        "Defineret - bias-test + accuracy-test før release",
+        "Styret - red team-events, dansk-sproget eval-suite, model cards",
+        "Optimeret - kontinuerlig adversarial testing i CI/CD, ekstern audit",
       ],
     },
     {
       id: "manage",
       label: "Drift & monitorering",
       levels: [
-        "Ad hoc — vi ser kun når det fejler",
-        "Defineret — drift-monitoring + alarmer per model",
-        "Styret — bias re-måling, audit-trail, hændelsesrapport-proces (Art. 73)",
-        "Optimeret — fuld telemetri, automatisk rollback, post-mortem-disciplin",
+        "Ad hoc - vi ser kun når det fejler",
+        "Defineret - drift-monitoring + alarmer per model",
+        "Styret - bias re-måling, audit-trail, hændelsesrapport-proces (Art. 73)",
+        "Optimeret - fuld telemetri, automatisk rollback, post-mortem-disciplin",
       ],
     },
     {
       id: "agent",
       label: "Agent governance",
       levels: [
-        "Ad hoc — vi har ingen agenter i prod (eller vi ved det ikke)",
-        "Defineret — agent-register, eksplicit tool-allowlist per agent",
-        "Styret — non-human identity governance, policy engine, decision-class matrix",
-        "Optimeret — kontinuerlig rogue-detection, A2A-policy, agent-observability via OTel",
+        "Ad hoc - vi har ingen agenter i prod (eller vi ved det ikke)",
+        "Defineret - agent-register, eksplicit tool-allowlist per agent",
+        "Styret - non-human identity governance, policy engine, decision-class matrix",
+        "Optimeret - kontinuerlig rogue-detection, A2A-policy, agent-observability via OTel",
       ],
     },
     {
       id: "audit",
       label: "Audit & assurance",
       levels: [
-        "Ad hoc — ingen formel revision af AI",
-        "Defineret — årligt 3LoD-audit-program",
-        "Styret — ekstern revision hvert 3. år, modenhedsvurdering mod NIST tier-model",
-        "Optimeret — ISO 42001-certificeret, kontinuerlig assurance, horizon scanning",
+        "Ad hoc - ingen formel revision af AI",
+        "Defineret - årligt 3LoD-audit-program",
+        "Styret - ekstern revision hvert 3. år, modenhedsvurdering mod NIST tier-model",
+        "Optimeret - ISO 42001-certificeret, kontinuerlig assurance, horizon scanning",
       ],
     },
   ];
@@ -1473,11 +1473,11 @@ function GovernanceMaturityRadar() {
   };
 
   const totalAssessed = values.filter((v) => v > 0).length;
-  const avg = totalAssessed > 0 ? (values.reduce((a, b) => a + b, 0) / totalAssessed).toFixed(1) : "—";
+  const avg = totalAssessed > 0 ? (values.reduce((a, b) => a + b, 0) / totalAssessed).toFixed(1) : " - ";
 
   // Map average score to NIST RMF-inspired tier label
   const tierLabel = (avg: string) => {
-    if (avg === "—") return "Ikke vurderet";
+    if (avg === " - ") return "Ikke vurderet";
     const a = parseFloat(avg);
     if (a < 1.5) return "Partial (NIST Tier 1)";
     if (a < 2.5) return "Risk Informed (Tier 2)";
@@ -1489,10 +1489,10 @@ function GovernanceMaturityRadar() {
     <div className="mb-8 rounded-xl border border-primary/30 bg-primary/5 p-6">
       <div className="mb-1 flex items-center gap-2">
         <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">Værktøj</span>
-        <h3 className="font-display text-lg font-semibold text-foreground">AI governance maturity — selvassessment</h3>
+        <h3 className="font-display text-lg font-semibold text-foreground">AI governance maturity - selvassessment</h3>
       </div>
       <p className="mb-5 text-sm text-muted-foreground">
-        Vurder jeres AI-governance-modenhed på 6 dimensioner (NIST AI RMF-inspireret + agent governance). Klik et niveau under hver akse — radaret opdaterer live. Brug resultatet som baseline for jeres roadmap.
+        Vurder jeres AI-governance-modenhed på 6 dimensioner (NIST AI RMF-inspireret + agent governance). Klik et niveau under hver akse - radaret opdaterer live. Brug resultatet som baseline for jeres roadmap.
       </p>
       <div className="grid gap-6 lg:grid-cols-[auto_1fr]">
         <div className="flex flex-col items-center gap-3">
@@ -1512,7 +1512,7 @@ function GovernanceMaturityRadar() {
             <div key={axis.id}>
               <div className="mb-2 flex items-baseline justify-between">
                 <p className="font-display text-sm font-semibold text-foreground">{axis.label}</p>
-                <p className="text-[10px] text-muted-foreground">Niveau {values[i] || "—"}</p>
+                <p className="text-[10px] text-muted-foreground">Niveau {values[i] || " - "}</p>
               </div>
               <div className="flex gap-1.5">
                 {[1, 2, 3, 4].map((lvl) => {
@@ -1803,7 +1803,7 @@ function SubcategoryView({
         </div>
       </div>
 
-      {/* Værktøj: Agent beslutnings-klasse matrix (kun for subkategori 1.4.4) —
+      {/* Værktøj: Agent beslutnings-klasse matrix (kun for subkategori 1.4.4) - 
           bevidst inline: det ER svaret på underkategoriens spørgsmål. */}
       {subcategory.id === "beslutnings-graenser" && <AgentDecisionClassMatrix />}
       {subcategory.id === "modenhed" && (
@@ -1887,7 +1887,7 @@ function InlineNewsletterPrompt({ hook, topic }: { hook: string; topic: string }
     try {
       const formData = new FormData();
       formData.append("fields[email]", email);
-      formData.append("fields[source_website]", "ai-governance.dk"); // hidden — segments signups by site in MailerLite
+      formData.append("fields[source_website]", "ai-governance.dk"); // hidden - segments signups by site in MailerLite
       formData.append("ml-submit", "1");
       formData.append("anticsrf", "true");
       await fetch(MAILERLITE_ACTION, {
@@ -1911,7 +1911,7 @@ function InlineNewsletterPrompt({ hook, topic }: { hook: string; topic: string }
         </div>
         {status === "success" ? (
           <div className="rounded-md border border-success/30 bg-success/10 px-4 py-2 text-sm text-success">
-            ✓ Tilmeldt — tjek din indbakke
+            ✓ Tilmeldt - tjek din indbakke
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row md:w-auto md:max-w-sm">
@@ -1952,7 +1952,7 @@ function NewsletterCTA({ showBooking = true }: { showBooking?: boolean }) {
     try {
       const formData = new FormData();
       formData.append("fields[email]", email);
-      formData.append("fields[source_website]", "ai-governance.dk"); // hidden — segments signups by site in MailerLite
+      formData.append("fields[source_website]", "ai-governance.dk"); // hidden - segments signups by site in MailerLite
       formData.append("ml-submit", "1");
       formData.append("anticsrf", "true");
       await fetch(MAILERLITE_ACTION, {
@@ -1977,7 +1977,7 @@ function NewsletterCTA({ showBooking = true }: { showBooking?: boolean }) {
           </p>
           {status === "success" ? (
             <div className="mt-4 rounded-md border border-success/30 bg-success/10 p-4 text-sm text-success">
-              ✓ Tak! Du er nu tilmeldt — tjek din indbakke for bekræftelse.
+              ✓ Tak! Du er nu tilmeldt - tjek din indbakke for bekræftelse.
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
@@ -2007,7 +2007,7 @@ function NewsletterCTA({ showBooking = true }: { showBooking?: boolean }) {
           <div className="rounded-xl border border-primary/30 bg-primary/5 p-6">
             <h3 className="font-display text-lg font-semibold text-foreground">🗓️ Book 30-min sparring</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Konkret sparring om jeres governance-situation — strategi, roller, AI Council, agent- og skill-governance, audit-readiness eller noget helt andet.
+              Konkret sparring om jeres governance-situation - strategi, roller, AI Council, agent- og skill-governance, audit-readiness eller noget helt andet.
             </p>
             <a
               href={CALENDLY_URL}
@@ -2058,7 +2058,7 @@ function ToolsIndex({ onHome, onOpenTool }: { onHome: () => void; onOpenTool: (s
           <h1 className="font-display text-2xl font-bold text-foreground">Værktøjer</h1>
         </div>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          Interaktive værktøjer til AI-governance — livscyklus-flow, RACI-matrix, control-plane-arkitektur og modenheds-selvvurdering. Hvert værktøj har sin egen side, så det kan deles direkte på LinkedIn, i mail eller i en præsentation.
+          Interaktive værktøjer til AI-governance - livscyklus-flow, RACI-matrix, control-plane-arkitektur og modenheds-selvvurdering. Hvert værktøj har sin egen side, så det kan deles direkte på LinkedIn, i mail eller i en præsentation.
         </p>
       </div>
 
@@ -2149,7 +2149,7 @@ function ToolPage({ tool, onHome, onTools }: { tool: ToolConfig; onHome: () => v
 
 // ── Tværgående tema: Agent governance (/agentisk) ──
 // A cross-cutting lens, NOT a 4th pillar: gathers the agent-governance content
-// (the 3 agent-dedicated categories — one per pillar — plus a couple of agent
+// (the 3 agent-dedicated categories - one per pillar - plus a couple of agent
 // stragglers in other categories) and groups it BY pillar so the
 // Organisering/Udvikling/Drift structure is reinforced rather than replaced.
 function AgenticView({
@@ -2184,7 +2184,7 @@ function AgenticView({
           </h1>
         </div>
         <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-          Et tværgående tema, ikke en selvstændig søjle: {total} emner om styring af autonome AI-agenter (organisering, build-time-design og runtime — inkl. agent-identitet, beslutningsgrænser, A2A/MCP, sandboxing og observability) samlet ét sted, men grupperet efter de tre søjler. Kerneområdet for AI-governance i 2026.
+          Et tværgående tema, ikke en selvstændig søjle: {total} emner om styring af autonome AI-agenter (organisering, build-time-design og runtime - inkl. agent-identitet, beslutningsgrænser, A2A/MCP, sandboxing og observability) samlet ét sted, men grupperet efter de tre søjler. Kerneområdet for AI-governance i 2026.
         </p>
       </div>
 

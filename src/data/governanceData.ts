@@ -116,7 +116,7 @@ export const pillars: Pillar[] = [
     name: "Organisering & Strategi",
     subtitle: "Roller, ansvar, politikker, kompetencer",
     description:
-      "Det organisatoriske fundament — roller, ansvar, politikker, kompetencer og etisk styring — der gør, at AI bruges målrettet og forsvarligt på tværs af forretningen. Det er her, ledelsen tager ejerskab og oversætter AI-ambition til styringspraksis.",
+      "Det organisatoriske fundament - roller, ansvar, politikker, kompetencer og etisk styring - der gør, at AI bruges målrettet og forsvarligt på tværs af forretningen. Det er her, ledelsen tager ejerskab og oversætter AI-ambition til styringspraksis.",
     icon: "🏛️",
     itemCount: 19,
   },
@@ -125,7 +125,7 @@ export const pillars: Pillar[] = [
     name: "Udvikling & Leverance",
     subtitle: "Fra use case-idé til go-live",
     description:
-      "Hvordan AI-løsninger fødes, vurderes og bringes i produktion — fra use case-idé over leverandørvalg til go-live. Omfatter både egne modeller, vendor-AI, generativ AI og agent-/skill-design.",
+      "Hvordan AI-løsninger fødes, vurderes og bringes i produktion - fra use case-idé over leverandørvalg til go-live. Omfatter både egne modeller, vendor-AI, generativ AI og agent-/skill-design.",
     icon: "🔧",
     itemCount: 21,
   },
@@ -134,7 +134,7 @@ export const pillars: Pillar[] = [
     name: "Drift & Vedligehold",
     subtitle: "Monitorering, hændelser, lifecycle, agent runtime",
     description:
-      "Hvordan AI-løsninger holdes forsvarlige, sikre og værdiskabende efter go-live — monitorering, hændelseshåndtering, retraining, FinOps og decommissioning. Den pillar der oftest undervurderes — og hvor det meste går galt i 2026.",
+      "Hvordan AI-løsninger holdes forsvarlige, sikre og værdiskabende efter go-live - monitorering, hændelseshåndtering, retraining, FinOps og decommissioning. Den pillar der oftest undervurderes - og hvor det meste går galt i 2026.",
     icon: "⚙️",
     itemCount: 27,
   },
@@ -152,7 +152,7 @@ export const categories: Category[] = [
     pillar: "organisering",
     icon: "🎯",
     description:
-      "Forankring af AI i overordnet forretningsstrategi, risikoappetit og værdiskabelse — så AI-indsatsen ikke bliver en samling af tilfældige proof-of-concepts.",
+      "Forankring af AI i overordnet forretningsstrategi, risikoappetit og værdiskabelse - så AI-indsatsen ikke bliver en samling af tilfældige proof-of-concepts.",
     subcategories: [
       {
         id: "bestyrelses-mandat",
@@ -163,11 +163,11 @@ export const categories: Category[] = [
         actions: [
           "Vedtag årlig AI-strategi med konkrete KPI'er (vedtagelsesrate, værdi, hændelsesfrekvens)",
           "Definér no-go-områder skriftligt (fx fuldautomatiske HR-afgørelser, AI-genererede juridiske breve uden review)",
-          "Etablér kvartalsvis AI-rapportering til bestyrelsen som fast punkt — ikke ad hoc",
+          "Etablér kvartalsvis AI-rapportering til bestyrelsen som fast punkt - ikke ad hoc",
           "Forankr \"stop-build authority\" hos en navngiven C-leder",
         ],
         sourceLinks: [
-          { label: "NIST AI RMF GOVERN 1.1–1.3", url: NIST_AIRMF, source: "NIST" },
+          { label: "NIST AI RMF GOVERN 1.1 - 1.3", url: NIST_AIRMF, source: "NIST" },
           { label: "ISO/IEC 42001 cl. 5", url: ISO_42001, source: "ISO" },
           { label: "OECD Principle 2.3", url: OECD_PRINCIPLES, source: "OECD" },
         ],
@@ -177,12 +177,12 @@ export const categories: Category[] = [
         id: "risiko-appetit",
         name: "Risikoappetit og tolerancetærskler",
         description:
-          "Eksplicitte, kvantificerede risikotolerancer pr. use case-kategori — ikke generiske udsagn om \"ansvarlig AI\".",
+          "Eksplicitte, kvantificerede risikotolerancer pr. use case-kategori - ikke generiske udsagn om \"ansvarlig AI\".",
         severity: "high",
         actions: [
           "Differentier tolerancer pr. kategori (kunderettet vs. intern, regulatorisk vs. ikke-regulatoriet)",
           "Sæt målbare tærskler: maks. hallucinationsrate, maks. forventet økonomisk fejl pr. transaktion, maks. bias-delta",
-          "Definér eskalering når tærskel overskrides — hvem stopper systemet?",
+          "Definér eskalering når tærskel overskrides - hvem stopper systemet?",
           "Re-evaluér tolerancer halvårligt mod faktisk hændelsesdata",
         ],
         sourceLinks: [
@@ -195,13 +195,13 @@ export const categories: Category[] = [
         id: "vaerdiansaettelse",
         name: "AI-værdiansættelse og business case-discipline",
         description:
-          "Standardiseret business case-skabelon, der tvinger forretningen til at kvantificere både gevinst og risikoomkostning før udvikling. Modvirker \"AI-teater\" — pilotering uden produktionsplan.",
+          "Standardiseret business case-skabelon, der tvinger forretningen til at kvantificere både gevinst og risikoomkostning før udvikling. Modvirker \"AI-teater\" - pilotering uden produktionsplan.",
         severity: "medium",
         actions: [
           "Krav om dokumenteret baseline (hvad koster processen i dag, fejlrate, gennemløbstid)",
           "Beregn TCO med drift, monitorering, retraining, GenAI-tokens og incidentomkostning",
           "Definér exit-kriterier på forhånd: hvornår stopper vi denne use case?",
-          "Genberegn business case efter 90 dages drift — kill rate er et sundt KPI",
+          "Genberegn business case efter 90 dages drift - kill rate er et sundt KPI",
         ],
         sourceLinks: [
           { label: "Gartner AI TRiSM", url: GARTNER_TRISM, source: "Gartner" },
@@ -229,10 +229,10 @@ export const categories: Category[] = [
         id: "ai-council",
         name: "AI Governance Board / AI Council",
         description:
-          "Tværfagligt beslutningsorgan med mandat til at godkende, eskalere og standse AI-initiativer. Skal ikke være en debatklub — skal have RACI-defineret beslutningskraft.",
+          "Tværfagligt beslutningsorgan med mandat til at godkende, eskalere og standse AI-initiativer. Skal ikke være en debatklub - skal have RACI-defineret beslutningskraft.",
         severity: "high",
         actions: [
-          "Sammensæt fra IT, data, jura, compliance, sikkerhed, HR, forretning — ikke kun teknik",
+          "Sammensæt fra IT, data, jura, compliance, sikkerhed, HR, forretning - ikke kun teknik",
           "Fast mødekadence (månedlig minimum); skriftlige beslutningsreferater",
           "Ejerskab af AI use case-portefølje og risikoregister",
           "Eskaleringsret til direktion/bestyrelse ved tolerancebrud",
@@ -248,10 +248,10 @@ export const categories: Category[] = [
         id: "model-owner",
         name: "AI Risk Owner og Model Owner-rolle",
         description:
-          "Hvert produktionssystem har en navngivet Model Owner (teknisk) og AI Risk Owner (forretningsmæssig). EU AI Act art. 26 forudsætter dokumenteret menneskelig ansvarlig — det kan ikke være \"afdelingen\".",
+          "Hvert produktionssystem har en navngivet Model Owner (teknisk) og AI Risk Owner (forretningsmæssig). EU AI Act art. 26 forudsætter dokumenteret menneskelig ansvarlig - det kan ikke være \"afdelingen\".",
         severity: "critical",
         actions: [
-          "Navngiv begge roller før produktionssætning — registrér i AI-register",
+          "Navngiv begge roller før produktionssætning - registrér i AI-register",
           "Definér mandat: Model Owner ejer drift/performance, Risk Owner ejer beslutning om at fortsætte/standse",
           "Risk Owner skal være forretningsperson, ikke IT",
           "Genvurdér rolleholder ved organisationsændring inden 30 dage",
@@ -267,7 +267,7 @@ export const categories: Category[] = [
         id: "tre-linjer",
         name: "Tre-linjers forsvarsmodel for AI",
         description:
-          "Anvend tre-linjers model (1L udvikler/driver, 2L compliance/risk, 3L intern revision) på AI — særligt vigtigt for finansielle virksomheder under Finanstilsynet.",
+          "Anvend tre-linjers model (1L udvikler/driver, 2L compliance/risk, 3L intern revision) på AI - særligt vigtigt for finansielle virksomheder under Finanstilsynet.",
         severity: "high",
         actions: [
           "Definér uafhængigt 2L AI-risk-team adskilt fra dataudvikling",
@@ -277,7 +277,7 @@ export const categories: Category[] = [
         ],
         sourceLinks: [
           { label: "IIA AI Auditing Framework (sept 2024)", url: IIA_AI_FRAMEWORK, source: "IIA" },
-          { label: "Finanstilsynet — god praksis for AI", url: FINANSTILSYNET_GODPRAKSIS, source: "Finanstilsynet" },
+          { label: "Finanstilsynet - god praksis for AI", url: FINANSTILSYNET_GODPRAKSIS, source: "Finanstilsynet" },
           { label: "ISO/IEC 42001 A.3", url: ISO_42001, source: "ISO" },
         ],
         tags: ["3LoD", "finans", "intern revision", "IIA"],
@@ -295,14 +295,14 @@ export const categories: Category[] = [
           "Publicér aggregerede tal årligt for transparens",
         ],
         sourceLinks: [
-          { label: "EU AI Act art. 26(5)–(6)", url: EU_ACT_ART_26, source: "EU AI Act" },
+          { label: "EU AI Act art. 26(5) - (6)", url: EU_ACT_ART_26, source: "EU AI Act" },
           { label: "Council of Europe Framework Convention on AI", url: COE_FCAI, source: "CoE" },
         ],
         tags: ["whistleblower", "eskalering", "transparens"],
       },
     ],
     sourceLinks: [
-      { label: "NIST AI RMF Playbook — GOVERN", url: NIST_AIRMF, source: "NIST" },
+      { label: "NIST AI RMF Playbook - GOVERN", url: NIST_AIRMF, source: "NIST" },
       { label: "ISO/IEC 42001:2023", url: ISO_42001, source: "ISO" },
       { label: "Microsoft Responsible AI Standard v2", url: MS_RAI, source: "Microsoft" },
     ],
@@ -320,7 +320,7 @@ export const categories: Category[] = [
         id: "literacy-basis",
         name: "AI-literacy-program (basis)",
         description:
-          "Obligatorisk grundtræning for alle medarbejdere, der bruger AI-værktøjer — også Copilot/ChatGPT. Skal dokumenteres pr. medarbejder.",
+          "Obligatorisk grundtræning for alle medarbejdere, der bruger AI-værktøjer - også Copilot/ChatGPT. Skal dokumenteres pr. medarbejder.",
         severity: "high",
         actions: [
           "Basistræning (1-2 timer) med test og certifikat; opdatér årligt",
@@ -390,11 +390,11 @@ export const categories: Category[] = [
         id: "agent-register",
         name: "Agent- og skill-register (single source of truth)",
         description:
-          "Komplet register over alle agenter, skills (Claude Code skills, Copilot Studio agents, Custom GPTs, MCP-servere) i organisationen — versioneret, ejet og klassificeret. Uden register er resten umuligt.",
+          "Komplet register over alle agenter, skills (Claude Code skills, Copilot Studio agents, Custom GPTs, MCP-servere) i organisationen - versioneret, ejet og klassificeret. Uden register er resten umuligt.",
         severity: "critical",
         actions: [
           "Centralt register med ejer, formål, datakilder, tool-permissions, miljø, version",
-          "Forbud mod produktion uden registrering — håndhæves via deployment-pipeline",
+          "Forbud mod produktion uden registrering - håndhæves via deployment-pipeline",
           "Klassificering pr. risikoniveau (info / decision-support / autonomous action)",
           "Genvurdering hver 90 dage; markér forældede skills til decommissioning",
         ],
@@ -427,7 +427,7 @@ export const categories: Category[] = [
         id: "skill-ejerskab",
         name: "Ejerskab af skills og agenter på tværs af platforme",
         description:
-          "Skills migrerer mellem Claude Code, GitHub Copilot, Copilot Studio — samme skill kan eksekvere forskelligt. Ejerskabsmodel skal følge skillen, ikke platformen.",
+          "Skills migrerer mellem Claude Code, GitHub Copilot, Copilot Studio - samme skill kan eksekvere forskelligt. Ejerskabsmodel skal følge skillen, ikke platformen.",
         severity: "medium",
         actions: [
           "Definér \"skill custodian\"-rolle uafhængigt af platform",
@@ -462,7 +462,7 @@ export const categories: Category[] = [
         id: "a2a-protokol-policy",
         name: "A2A-protokol governance-policy (cross-org agent-kommunikation)",
         description:
-          "Google's Agent2Agent-protokol blev doneret til Linux Foundation i juni 2025 og er nu v1.0+ med 150+ adoptanter (Microsoft, AWS, Salesforce, SAP, ServiceNow) i produktion. De tekniske beslutninger er én ting — men organisationen skal aktivt vælge agent-identitets-, kapabilitets-disclosure- og trust-policy. Hvem ejer indholdet af jeres Agent Card? Hvilke partnere må kalde jeres agenter?",
+          "Google's Agent2Agent-protokol blev doneret til Linux Foundation i juni 2025 og er nu v1.0+ med 150+ adoptanter (Microsoft, AWS, Salesforce, SAP, ServiceNow) i produktion. De tekniske beslutninger er én ting - men organisationen skal aktivt vælge agent-identitets-, kapabilitets-disclosure- og trust-policy. Hvem ejer indholdet af jeres Agent Card? Hvilke partnere må kalde jeres agenter?",
         severity: "high",
         actions: [
           "Agent Card-registreringspolicy: beslut hvem der ejer indholdet af /.well-known/agent.json (juridisk review af skill-beskrivelser, version-cadence, deprecation SLA)",
@@ -494,13 +494,13 @@ export const categories: Category[] = [
     pillar: "organisering",
     icon: "⚖️",
     description:
-      "Skriftlige politikker, der binder organisationen til normer ud over juridiske minimumskrav — særligt menneskerettighedsmæssige.",
+      "Skriftlige politikker, der binder organisationen til normer ud over juridiske minimumskrav - særligt menneskerettighedsmæssige.",
     subcategories: [
       {
         id: "aup",
         name: "AI Acceptable Use Policy",
         description:
-          "Skriftlig politik for hvad medarbejdere må og ikke må gøre med AI-værktøjer — inkl. ChatGPT, Copilot, Claude. Skal være konkret, ikke abstrakt.",
+          "Skriftlig politik for hvad medarbejdere må og ikke må gøre med AI-værktøjer - inkl. ChatGPT, Copilot, Claude. Skal være konkret, ikke abstrakt.",
         severity: "high",
         actions: [
           "Klar liste over forbudte input (CPR, kundelister, kildekode med IP)",
@@ -538,13 +538,13 @@ export const categories: Category[] = [
         id: "red-line-katalog",
         name: "Etisk reviewboard / red-line-katalog",
         description:
-          "Eksplicit liste over use cases, organisationen ikke vil bygge — uanset legalitet. Stærk signaleffekt eksternt og internt.",
+          "Eksplicit liste over use cases, organisationen ikke vil bygge - uanset legalitet. Stærk signaleffekt eksternt og internt.",
         severity: "medium",
         actions: [
           "Vedtag mindst 5-10 konkrete no-go (fx følelsesgenkendelse på medarbejdere)",
           "Etablér uafhængigt etisk panel ved tvivlssager",
           "Offentliggør red-line-kataloget på hjemmeside",
-          "Genbesøg årligt — særligt ved nye teknologier",
+          "Genbesøg årligt - særligt ved nye teknologier",
         ],
         sourceLinks: [
           { label: "Microsoft RAI \"sensitive uses\"", url: MS_RAI, source: "Microsoft" },
@@ -575,7 +575,7 @@ export const categories: Category[] = [
     sourceLinks: [
       { label: "Council of Europe Framework Convention on AI", url: COE_FCAI, source: "CoE" },
       { label: "OECD AI Principles", url: OECD_PRINCIPLES, source: "OECD" },
-      { label: "EU AI Act art. 27 — FRIA", url: EU_ACT_ART_27, source: "EU AI Act" },
+      { label: "EU AI Act art. 27 - FRIA", url: EU_ACT_ART_27, source: "EU AI Act" },
     ],
   },
 
@@ -595,11 +595,11 @@ export const categories: Category[] = [
         id: "intake-triage",
         name: "Use case-intake og triage",
         description:
-          "Single front door for AI-idéer — ingen produktionsbygning uden registrering. Forhindrer fragmenteret skygge-AI.",
+          "Single front door for AI-idéer - ingen produktionsbygning uden registrering. Forhindrer fragmenteret skygge-AI.",
         severity: "high",
         actions: [
           "Standardiseret intake-form med påkrævede felter (formål, data, risikoklasse)",
-          "Triage inden 10 hverdage — accept / afvis / venteliste",
+          "Triage inden 10 hverdage - accept / afvis / venteliste",
           "Synligt portefølje-dashboard for AI Council",
           "Periodisk \"amnesti-runde\" hvor shadow-systemer kan registreres uden konsekvens",
         ],
@@ -618,7 +618,7 @@ export const categories: Category[] = [
         actions: [
           "Beslutningstræ baseret på Annex III + interne kriterier",
           "Dual-sign-off: forretning + 2L compliance",
-          "Dokumentér klassificeringen — myndigheder vil bede om denne",
+          "Dokumentér klassificeringen - myndigheder vil bede om denne",
           "Genvurdér ved scope-ændring (>20 % funktionsændring)",
         ],
         sourceLinks: [
@@ -636,7 +636,7 @@ export const categories: Category[] = [
         severity: "medium",
         actions: [
           "Krav om produktionsplan før PoC starter (\"hvad sker der hvis det virker?\")",
-          "Eksplicit \"kill\"-beslutning ved enden af PoC — ingen autopromote",
+          "Eksplicit \"kill\"-beslutning ved enden af PoC - ingen autopromote",
           "Sikkerhedsreview før produktionssætning, ikke efter",
           "90-dages post-launch evaluering tilbage til AI Council",
         ],
@@ -684,7 +684,7 @@ export const categories: Category[] = [
         id: "data-lineage",
         name: "Data lineage og training-data-provenance",
         description:
-          "Dokumenteret kæde fra rådata til model — særligt vigtigt for EU AI Act art. 10 og copyright-risiko.",
+          "Dokumenteret kæde fra rådata til model - særligt vigtigt for EU AI Act art. 10 og copyright-risiko.",
         severity: "high",
         actions: [
           "Data card / datasheet pr. datakilde med licens, oprindelse, opdateringskadence",
@@ -703,13 +703,13 @@ export const categories: Category[] = [
         id: "rag-governance",
         name: "RAG-kildegovernance",
         description:
-          "RAG-systemer henter løbende fra kildedokumenter — disse er en governance-overflade i sig selv. Hvem må indeksere hvad?",
+          "RAG-systemer henter løbende fra kildedokumenter - disse er en governance-overflade i sig selv. Hvem må indeksere hvad?",
         severity: "high",
         actions: [
           "Adgangsstyring på chunk-niveau, ikke kun dokument",
           "Sletning fra index når kilde slettes (right-to-be-forgotten cascade)",
           "Versionering så svar kan rekonstrueres på en given dato",
-          "Periodisk relevansreview — fjern outdated kilder",
+          "Periodisk relevansreview - fjern outdated kilder",
         ],
         sourceLinks: [
           { label: "OWASP LLM06 (Sensitive Info Disclosure)", url: OWASP_LLM, source: "OWASP" },
@@ -775,7 +775,7 @@ export const categories: Category[] = [
         id: "vendor-dd",
         name: "AI-leverandørvurdering og due diligence",
         description:
-          "Standardiseret vurdering af AI-leverandører før kontrakt — bias, sikkerhed, datapraksis, sub-processorer, model-provenance.",
+          "Standardiseret vurdering af AI-leverandører før kontrakt - bias, sikkerhed, datapraksis, sub-processorer, model-provenance.",
         severity: "critical",
         actions: [
           "Bindende AI-due-diligence-spørgeskema (50-80 punkter)",
@@ -800,7 +800,7 @@ export const categories: Category[] = [
           "Standardiseret benchmark-suite på reelle organisationsopgaver (ikke MMLU)",
           "Test bias og refusal-rates på dansk-sproget data",
           "Vurdér data-residency, sub-processors, EU-tilgængelighed",
-          "Genevaluér halvårligt — modellandskabet flytter sig hurtigt",
+          "Genevaluér halvårligt - modellandskabet flytter sig hurtigt",
         ],
         sourceLinks: [
           { label: "NIST GenAI MEASURE", url: NIST_GENAI, source: "NIST" },
@@ -831,7 +831,7 @@ export const categories: Category[] = [
         id: "mcp-governance",
         name: "MCP-server- og tool-leverandørgovernance",
         description:
-          "MCP-servere er en ny vendor-kategori i 2026 — en MCP-server giver agenter adgang til eksterne systemer. Skal vurderes som tredjepartssoftware med eskaleret kritikalitet.",
+          "MCP-servere er en ny vendor-kategori i 2026 - en MCP-server giver agenter adgang til eksterne systemer. Skal vurderes som tredjepartssoftware med eskaleret kritikalitet.",
         severity: "high",
         actions: [
           "Whitelist af godkendte MCP-servere; resten blokeres på netværksniveau",
@@ -868,9 +868,9 @@ export const categories: Category[] = [
           "Hver agent får kun adgang til de tools/scopes den faktisk behøver. Default skal være \"kan ikke\", ikke \"kan alt\".",
         severity: "critical",
         actions: [
-          "Eksplicit tool-allowlist pr. agent — ingen wildcard",
+          "Eksplicit tool-allowlist pr. agent - ingen wildcard",
           "Time-bound og scope-bound tokens (kort levetid + RFC 8707)",
-          "Incremental scope consent — agenten beder pr. operation, ikke samlet",
+          "Incremental scope consent - agenten beder pr. operation, ikke samlet",
           "Tool-call rate limits pr. session",
         ],
         sourceLinks: [
@@ -883,7 +883,7 @@ export const categories: Category[] = [
         id: "plan-validering",
         name: "Plan-validering og guardrails",
         description:
-          "Før en agent eksekverer en flertrins plan, valideres planen mod policy — særligt vigtigt for irreversible handlinger.",
+          "Før en agent eksekverer en flertrins plan, valideres planen mod policy - særligt vigtigt for irreversible handlinger.",
         severity: "high",
         actions: [
           "Pre-execution policy check (deterministisk regel-engine, ikke LLM-self-check)",
@@ -907,7 +907,7 @@ export const categories: Category[] = [
           "Definér agent-roller og kommunikationsgrænser eksplicit (ikke \"alle taler med alle\")",
           "Mutual authentication mellem agenter (signerede beskeder)",
           "Loop-detektion: maks. N hops i en agent-kæde",
-          "Single source-of-truth for agent-state — undgå distribueret konsensus uden begrundelse",
+          "Single source-of-truth for agent-state - undgå distribueret konsensus uden begrundelse",
         ],
         sourceLinks: [
           { label: "OWASP ASI07 (Inter-agent Comm)", url: OWASP_AGENTIC, source: "OWASP" },
@@ -919,7 +919,7 @@ export const categories: Category[] = [
         id: "skill-versionering",
         name: "Skill-versionering og changelog",
         description:
-          "Skills udvikler sig hurtigt — uden semver og changelog mister man overblikket. Brugere skal vide, hvad der har ændret sig.",
+          "Skills udvikler sig hurtigt - uden semver og changelog mister man overblikket. Brugere skal vide, hvad der har ændret sig.",
         severity: "medium",
         actions: [
           "Semantisk versionering pr. skill (major.minor.patch)",
@@ -965,13 +965,13 @@ export const categories: Category[] = [
     pillar: "udvikling",
     icon: "🔍",
     description:
-      "Hvordan måles AI-systemer før produktion — bias, robustness, hallucinationsrate, red-team.",
+      "Hvordan måles AI-systemer før produktion - bias, robustness, hallucinationsrate, red-team.",
     subcategories: [
       {
         id: "eval-suite",
         name: "Pre-launch-evalueringssuite",
         description:
-          "Standardiseret test-suite, der køres på enhver AI-løsning før produktion — performance, bias, robustness.",
+          "Standardiseret test-suite, der køres på enhver AI-løsning før produktion - performance, bias, robustness.",
         severity: "high",
         actions: [
           "Test på dansk-sproget data, ikke kun engelsk",
@@ -990,7 +990,7 @@ export const categories: Category[] = [
         id: "red-teaming",
         name: "Red teaming og adversarial testing",
         description:
-          "Aktiv adversarial test — eksternt eller internt team forsøger at få modellen til at fejle. Særligt vigtigt for GenAI og agenter.",
+          "Aktiv adversarial test - eksternt eller internt team forsøger at få modellen til at fejle. Særligt vigtigt for GenAI og agenter.",
         severity: "high",
         actions: [
           "Mindst ét red team-event før produktion for høj-risiko-systemer",
@@ -1033,7 +1033,7 @@ export const categories: Category[] = [
         actions: [
           "Standardskabelon for alle produktions-modeller",
           "Inkluder bias-resultater, ikke kun performance",
-          "Vedligehold som living document — opdatér ved hver retraining",
+          "Vedligehold som living document - opdatér ved hver retraining",
           "Tilgængelig for AI Council og 2L compliance",
         ],
         sourceLinks: [
@@ -1142,7 +1142,7 @@ export const categories: Category[] = [
         id: "otel-genai-observability",
         name: "Agent observability via OpenTelemetry GenAI",
         description:
-          "OpenTelemetry GenAI semantic conventions standardiserer hvordan AI-kald, tool-invocations og workflows registreres som spans og metrics. Pr. 2026 er client-call-spans tæt på stable; agent- og tool-spans er stadig under aktiv udvikling. Major vendors (Datadog, New Relic, Dynatrace, Langfuse, Arize) ingester nu konventionerne natively — det er den de facto baseline for portabel agent-observability.",
+          "OpenTelemetry GenAI semantic conventions standardiserer hvordan AI-kald, tool-invocations og workflows registreres som spans og metrics. Pr. 2026 er client-call-spans tæt på stable; agent- og tool-spans er stadig under aktiv udvikling. Major vendors (Datadog, New Relic, Dynatrace, Langfuse, Arize) ingester nu konventionerne natively - det er den de facto baseline for portabel agent-observability.",
         severity: "high",
         actions: [
           "Emit standard span-attributter på hvert model-kald: gen_ai.operation.name, gen_ai.request.model, gen_ai.provider.name, gen_ai.usage.input_tokens, gen_ai.usage.output_tokens, gen_ai.response.finish_reasons",
@@ -1174,18 +1174,18 @@ export const categories: Category[] = [
     pillar: "drift",
     icon: "🚨",
     description:
-      "Hvordan organisationen reagerer når AI-systemet fejler — fra teknisk udfald til etisk hændelse.",
+      "Hvordan organisationen reagerer når AI-systemet fejler - fra teknisk udfald til etisk hændelse.",
     subcategories: [
       {
         id: "incident-runbook",
         name: "AI-incident response-plan",
         description:
-          "Specifik runbook for AI-hændelser — adskilt fra almindelig IT-incident men koordineret med den.",
+          "Specifik runbook for AI-hændelser - adskilt fra almindelig IT-incident men koordineret med den.",
         severity: "critical",
         actions: [
           "Klassificering af hændelser (P1-P4) med tilknyttede responstider",
           "Definér roller: Model Owner, Risk Owner, kommunikation, jura",
-          "Pre-aftalt kill switch — hvem trykker, og hvordan?",
+          "Pre-aftalt kill switch - hvem trykker, og hvordan?",
           "Tabletop-øvelse halvårligt",
         ],
         sourceLinks: [
@@ -1223,7 +1223,7 @@ export const categories: Category[] = [
         actions: [
           "Feature flag på alle AI-funktioner; dokumentér hvem der kan toggle",
           "Fallback-flow defineret (manuel, regel-baseret, tidligere modelversion)",
-          "Test kill switch kvartalsvist — chaos engineering for AI",
+          "Test kill switch kvartalsvist - chaos engineering for AI",
           "Decision rights: hvem kan trykke i en krise uden videre godkendelse?",
         ],
         sourceLinks: [
@@ -1253,7 +1253,7 @@ export const categories: Category[] = [
       },
     ],
     sourceLinks: [
-      { label: "EU AI Act art. 73 — serious incident reporting", url: EU_ACT_ART_73, source: "EU AI Act" },
+      { label: "EU AI Act art. 73 - serious incident reporting", url: EU_ACT_ART_73, source: "EU AI Act" },
       { label: "NIST AI RMF MANAGE 4", url: NIST_AIRMF, source: "NIST" },
     ],
   },
@@ -1264,13 +1264,13 @@ export const categories: Category[] = [
     pillar: "drift",
     icon: "🔄",
     description:
-      "Modeller skal vedligeholdes som ethvert andet produkt — periodisk retraining, version-bumps, kontrolleret nedlæggelse.",
+      "Modeller skal vedligeholdes som ethvert andet produkt - periodisk retraining, version-bumps, kontrolleret nedlæggelse.",
     subcategories: [
       {
         id: "retraining-politik",
         name: "Retraining-politik",
         description:
-          "Eksplicit politik for hvornår en model retraines — tidsbaseret, drift-baseret eller event-baseret.",
+          "Eksplicit politik for hvornår en model retraines - tidsbaseret, drift-baseret eller event-baseret.",
         severity: "medium",
         actions: [
           "Definér trigger-typer pr. model (tid, datadrift, performance-drop)",
@@ -1307,12 +1307,12 @@ export const categories: Category[] = [
         id: "decommissioning",
         name: "Decommissioning og dataarkivering",
         description:
-          "Ordnet nedlukning af AI-systemer — model, data, logs, dokumentation — efter retention-krav.",
+          "Ordnet nedlukning af AI-systemer - model, data, logs, dokumentation - efter retention-krav.",
         severity: "medium",
         actions: [
           "Decommissioning-tjekliste eksekveret af Model Owner",
           "Arkivér model + dokumentation i mindst lovbestemt periode (10 år for høj-risiko jf. EU AI Act)",
-          "Slet personoplysninger jf. GDPR — særskilt fra modelarkiv",
+          "Slet personoplysninger jf. GDPR - særskilt fra modelarkiv",
           "Final report til AI Council inkl. lessons learned",
         ],
         sourceLinks: [
@@ -1334,13 +1334,13 @@ export const categories: Category[] = [
     pillar: "drift",
     icon: "🤖",
     description:
-      "Drift af agenter er kvalitativt anderledes end klassisk modeldrift. Agenter handler — og fejl multipliceres på sekunder. Den mest underudviklede del af de fleste organisationers governance i 2026.",
+      "Drift af agenter er kvalitativt anderledes end klassisk modeldrift. Agenter handler - og fejl multipliceres på sekunder. Den mest underudviklede del af de fleste organisationers governance i 2026.",
     subcategories: [
       {
         id: "agent-identitet",
         name: "Agent-identitet og non-human identity governance",
         description:
-          "Hver agent skal have unik, scoped, kortlivet identitet med menneskelig ansvarsperson. NHI'er overstiger menneskelige identiteter 45:1 i 2026 — uden NHI-governance er det blindspot total.",
+          "Hver agent skal have unik, scoped, kortlivet identitet med menneskelig ansvarsperson. NHI'er overstiger menneskelige identiteter 45:1 i 2026 - uden NHI-governance er det blindspot total.",
         severity: "critical",
         actions: [
           "Unik agent-identity pr. agent-instans (ikke delt service account)",
@@ -1417,11 +1417,11 @@ export const categories: Category[] = [
         id: "rogue-agent",
         name: "Rogue agent-detektion",
         description:
-          "Agenter der \"går af sporet\" — handler uden for scope, gentager mislykkede handlinger, omgår guardrails. Skal detekteres aktivt.",
+          "Agenter der \"går af sporet\" - handler uden for scope, gentager mislykkede handlinger, omgår guardrails. Skal detekteres aktivt.",
         severity: "high",
         actions: [
           "Baseline-modeller for normal agent-adfærd; alarmer på anomalier",
-          "\"Two strikes\" — to forsøg på samme blokerede handling = auto-suspend",
+          "\"Two strikes\" - to forsøg på samme blokerede handling = auto-suspend",
           "Daglig review af agenter på alarmliste",
           "Rogue agent-runbook (suspend, audit, root cause)",
         ],
@@ -1435,7 +1435,7 @@ export const categories: Category[] = [
         id: "agent-exfiltration",
         name: "Agent-induceret data-eksfiltration",
         description:
-          "Agenter med adgang til både sensitive data og external tools (email, web, file share) kan ufrivilligt lække data — særligt under prompt injection.",
+          "Agenter med adgang til både sensitive data og external tools (email, web, file share) kan ufrivilligt lække data - særligt under prompt injection.",
         severity: "critical",
         actions: [
           "Privilege separation: agent med ekstern kommunikation må ikke se sensitive data direkte",
@@ -1475,14 +1475,14 @@ export const categories: Category[] = [
         id: "agent-rate-limiting",
         name: "Agent rate-limiting & cost circuit-breaker",
         description:
-          "Agent rate-limiting adskiller sig fundamentalt fra API rate-limiting fordi agenter skaber cascading cost: en retry-loop med voksende kontekst kan tage en 4.000-token prompt til 128.000 tokens på 5 steps — ~32× pr-call-pris. Konventionelle QPS-limits tillader denne patologi. Agent-governance kræver lag-baserede kontroller på spending-velocity, loop-mønstre og tool-call-kvoter — håndhævet ved AI-gateway, ikke per-framework. Publicly rapporterede runaway-loop-hændelser har kostet titusinder af dollars.",
+          "Agent rate-limiting adskiller sig fundamentalt fra API rate-limiting fordi agenter skaber cascading cost: en retry-loop med voksende kontekst kan tage en 4.000-token prompt til 128.000 tokens på 5 steps - ~32× pr-call-pris. Konventionelle QPS-limits tillader denne patologi. Agent-governance kræver lag-baserede kontroller på spending-velocity, loop-mønstre og tool-call-kvoter - håndhævet ved AI-gateway, ikke per-framework. Publicly rapporterede runaway-loop-hændelser har kostet titusinder af dollars.",
         severity: "high",
         actions: [
-          "Token bucket pr. identitets-tupel (user, agent, model) ved gateway (fx LiteLLM proxy) — ikke global cap; én runaway tenant kan ikke sulte andre",
+          "Token bucket pr. identitets-tupel (user, agent, model) ved gateway (fx LiteLLM proxy) - ikke global cap; én runaway tenant kan ikke sulte andre",
           "Cost circuit-breaker på velocity: trip ved spend > daily_budget × multiplier / time (fx >$5/min på $50/dag-budget); pause workload og page platform-teamet før faktura-skade",
           "Per-task budget + iteration-cap i agent-framework (LangChain/LangGraph max-iterations, LiteLLM max_budget) så én user-request ikke spiser ubegrænset team-budget",
           "Loop-signature breaker: detect identiske prompts, monotont voksende kontekst eller gentagne tool-calls inden for en session; trip per-session breaker (fanger rekursive failures som token-buckets ikke ser)",
-          "Tool-call-kvoter downstream: separate quotas ved tool-laget (max 50 web-searches/task, max 10 DB-writes/task) — model-gateway rate-limiter ikke dyre tool-calls",
+          "Tool-call-kvoter downstream: separate quotas ved tool-laget (max 50 web-searches/task, max 10 DB-writes/task) - model-gateway rate-limiter ikke dyre tool-calls",
           "Declarativ fallback-chain pr. route: primary → cheaper model → semantic cache → 503; dokumentér hvilke routes accepterer degraded quality vs. som skal fail closed (fx legal drafting)",
         ],
         sourceLinks: [
@@ -1507,7 +1507,7 @@ export const categories: Category[] = [
     pillar: "drift",
     icon: "💰",
     description:
-      "AI-økonomi og miljøaftryk — to relativt nye governance-overflader. FinOps fordi tokenforbrug er ulineært; bæredygtighed fordi OECD/CoE-rammer kræver dokumentation.",
+      "AI-økonomi og miljøaftryk - to relativt nye governance-overflader. FinOps fordi tokenforbrug er ulineært; bæredygtighed fordi OECD/CoE-rammer kræver dokumentation.",
     subcategories: [
       {
         id: "showback",
@@ -1554,7 +1554,7 @@ export const categories: Category[] = [
           "Vendor-attestation om regions energi-mix",
           "Vurder inferenceeffektivitet ved modelvalg (mindre model = mindre CO2)",
           "Inkluder AI-fodaftryk i CSRD-rapportering under Scope 3",
-          "Etabler interne reduktionsmål — foran kommende ESRS-revisioner",
+          "Etabler interne reduktionsmål - foran kommende ESRS-revisioner",
         ],
         sourceLinks: [
           { label: "OECD Principles 1.4", url: OECD_PRINCIPLES, source: "OECD" },
@@ -1574,7 +1574,7 @@ export const categories: Category[] = [
     pillar: "drift",
     icon: "🔁",
     description:
-      "Den løbende governance-cyklus — audits, modenhedsvurdering, opdatering af rammer.",
+      "Den løbende governance-cyklus - audits, modenhedsvurdering, opdatering af rammer.",
     subcategories: [
       {
         id: "intern-audit",
@@ -1617,7 +1617,7 @@ export const categories: Category[] = [
         id: "horizon-scanning",
         name: "Horizon scanning og policy-opdatering",
         description:
-          "AI-landskabet ændrer sig hurtigt — politikker skal følge med. Specifik ansvar for at scanne, vurdere og opdatere.",
+          "AI-landskabet ændrer sig hurtigt - politikker skal følge med. Specifik ansvar for at scanne, vurdere og opdatere.",
         severity: "medium",
         actions: [
           "Navngiv ansvarlig for horizon scanning (typisk AI Risk Owner)",
@@ -1695,7 +1695,7 @@ export const toolsMeta: ToolMeta[] = [
   {
     slug: "use-case-livscyklus",
     title: "Use case-livscyklus",
-    shortPitch: "8 faser fra idé til udfasning — med ejer, gate og kill-kriterier for hvert trin.",
+    shortPitch: "8 faser fra idé til udfasning - med ejer, gate og kill-kriterier for hvert trin.",
     description:
       "Flow over use case-livscyklussens 8 faser (idé → værdivurdering → udvikling → validering → idriftsættelse → drift → revurdering → udfasning), hver med ansvarlig ejer, beslutnings-gate og kill-kriterier. Krydsreferer AI Council RACI-matricen.",
     icon: "🔄",
@@ -1711,7 +1711,7 @@ export const toolsMeta: ToolMeta[] = [
   {
     slug: "agent-runtime-control-plane",
     title: "Agent runtime control-plane",
-    shortPitch: "7-lags pipeline for sikker agent-eksekvering — fra request til menneskelig oversight.",
+    shortPitch: "7-lags pipeline for sikker agent-eksekvering - fra request til menneskelig oversight.",
     description:
       "Diagram over et 7-lags control-plane til AI-agenter: Request → Identitet → Policy → Plan-validering → Eksekvering → Observability → Human oversight. Referencearkitektur for governance af autonome agenter i produktion.",
     icon: "🛡️",
