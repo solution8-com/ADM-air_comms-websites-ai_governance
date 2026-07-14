@@ -1858,7 +1858,7 @@ function SubcategoryView({
       <div className="mt-8 rounded-xl border border-primary/30 bg-primary/5 p-6 text-center">
         <h3 className="font-display text-lg font-semibold text-foreground">Brug for sparring på dette governance-tema?</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Book et 30-min sparringsmøde med AI Rådgivning — vi hjælper danske organisationer med at bygge praktisk AI-governance, fra roller og politikker til agent- og skill-styring.
+          Book et 30-min sparringsmøde med SOLUTION8 - vi hjælper danske organisationer med at bygge praktisk AI-governance, fra roller og politikker til agent- og skill-styring.
         </p>
         <a
           href={CALENDLY_URL}
