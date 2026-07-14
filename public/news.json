@@ -1,6 +1,12 @@
 {
-  "generatedAt": "2026-07-06T10:27:53.380Z",
+  "generatedAt": "2026-07-14T02:59:32.161Z",
   "items": [
+    {
+      "title": "The Scientific Panel of Independent Experts: What Is It And How Does It Work?",
+      "link": "https://artificialintelligenceact.eu/scientific-panel/?utm_source=rss&utm_medium=rss&utm_campaign=scientific-panel",
+      "source": "AI Act",
+      "date": "2026-07-07T16:53:11.000Z"
+    },
     {
       "title": "The Advisory Forum: What Is It And How Does It Work?",
       "link": "https://artificialintelligenceact.eu/the-advisory-forum-what-is-it-and-how-does-it-work/?utm_source=rss&utm_medium=rss&utm_campaign=the-advisory-forum-what-is-it-and-how-does-it-work",
@@ -42,12 +48,6 @@
       "link": "https://artificialintelligenceact.eu/gpai-guidelines-overview/?utm_source=rss&utm_medium=rss&utm_campaign=gpai-guidelines-overview",
       "source": "AI Act",
       "date": "2025-07-30T17:46:55.000Z"
-    },
-    {
-      "title": "Overview of the Code of Practice",
-      "link": "https://artificialintelligenceact.eu/code-of-practice-overview/?utm_source=rss&utm_medium=rss&utm_campaign=code-of-practice-overview",
-      "source": "AI Act",
-      "date": "2025-07-30T17:45:06.000Z"
     }
   ]
 }
