@@ -2,6 +2,7 @@ import { useState, useMemo, useRef, useEffect, type FormEvent } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { SiteWordmark } from "@/components/SiteWordmark";
 import { SiteFooter } from "@/components/SiteFooter";
+import { BookingDialog } from "@/components/BookingDialog";
 import { ExternalLink, ChevronRight, ChevronDown, Search, Wrench, ArrowLeft, Download, Copy } from "lucide-react";
 import {
   pillars,
@@ -19,8 +20,6 @@ import {
 } from "@/data/governanceData";
 
 type View = "dashboard" | "pillar" | "category" | "subcategory";
-
-const CALENDLY_URL = "https://calendly.com/ai-raadgivning_jacob/30min?month=2026-06";
 
 // Clickable example searches shown in the empty/no-results state.
 const SEARCH_SUGGESTIONS = ["RACI", "agent", "modenhed", "livscyklus", "roller", "A2A"];
@@ -218,6 +217,7 @@ const Index = () => {
   const routerNavigate = useNavigate();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   // Tools route detection (literal /vaerktoejer segment)
   const isToolsRoute =
@@ -418,14 +418,13 @@ const Index = () => {
               >
                 ISO 42001 <ExternalLink className="h-3 w-3" />
               </a>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
                 className="flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground transition-opacity hover:opacity-90"
               >
                 Book et møde
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -552,15 +551,18 @@ const Index = () => {
             category={selectedCategory}
             onNavigate={navigate}
             onOpenTool={openTool}
+            onBook={() => setBookingOpen(true)}
           />
         )}
       </main>
 
       {/* Newsletter + CTA strip - hide booking column on subcategory pages
           (they already have a contextual "Book sparring" card). */}
-      <NewsletterCTA showBooking={view !== "subcategory"} />
+      <NewsletterCTA showBooking={view !== "subcategory"} onBook={() => setBookingOpen(true)} />
 
       <SiteFooter />
+
+      <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </div>
   );
 };
@@ -1767,11 +1769,13 @@ function SubcategoryView({
   category,
   onNavigate,
   onOpenTool,
+  onBook,
 }: {
   subcategory: Subcategory;
   category: Category;
   onNavigate: (v: View, p?: PillarId, c?: Category, s?: Subcategory) => void;
   onOpenTool: (slug: string) => void;
+  onBook: () => void;
 }) {
   return (
     <div className="fade-in max-w-3xl">
@@ -1860,14 +1864,13 @@ function SubcategoryView({
         <p className="mt-2 text-sm text-muted-foreground">
           Book et 30-min sparringsmøde med SOLUTION8 - vi hjælper danske organisationer med at bygge praktisk AI-governance, fra roller og politikker til agent- og skill-styring.
         </p>
-        <a
-          href={CALENDLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={onBook}
           className="mt-4 inline-block rounded-md bg-accent px-5 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
         >
           Book 30-min sparring
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -1941,7 +1944,7 @@ function InlineNewsletterPrompt({ hook, topic }: { hook: string; topic: string }
   );
 }
 
-function NewsletterCTA({ showBooking = true }: { showBooking?: boolean }) {
+function NewsletterCTA({ showBooking = true, onBook }: { showBooking?: boolean; onBook: () => void }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
 
@@ -2009,14 +2012,13 @@ function NewsletterCTA({ showBooking = true }: { showBooking?: boolean }) {
             <p className="mt-2 text-sm text-muted-foreground">
               Konkret sparring om jeres governance-situation - strategi, roller, AI Council, agent- og skill-governance, audit-readiness eller noget helt andet.
             </p>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={onBook}
               className="mt-4 inline-block rounded-md bg-accent px-5 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
             >
               Book et møde
-            </a>
+            </button>
           </div>
         )}
       </div>
